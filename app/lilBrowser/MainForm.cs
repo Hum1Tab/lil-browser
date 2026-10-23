@@ -1075,6 +1075,7 @@ internal sealed class MainForm : Form
             if (!UrlPolicy.IsAllowedTypedUrl(text))
             {
                 _status.Text = "この URL スキームは開けません";
+                SyncAddress();
                 return;
             }
             url = text;
@@ -1091,6 +1092,7 @@ internal sealed class MainForm : Form
         if (!UrlPolicy.IsAllowedNavigation(url))
         {
             _status.Text = "安全でない URL をブロックしました";
+            SyncAddress();
             return;
         }
         CurrentCore()?.Navigate(url);
