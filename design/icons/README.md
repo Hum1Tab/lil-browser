@@ -26,12 +26,12 @@ Legend: ○ weak, ● usable, ●● clear, ●●● strong.
 
 ## Final choice: 01 Orbit / portal
 
-The ring reads as a browser window or portal; the detached node reads as a tab, a person, or a connected service. The break in the ring is functional, not decorative: it keeps the node visually separate at 16 px and prevents the mark from becoming a generic magnifier or a letter Q.
+The ring reads as a browser window or portal; the detached black node reads as a tab or a connected service. The break in the ring is functional, not decorative: it keeps the node visually separate at 16 px and prevents the mark from becoming a generic magnifier or a letter Q. The palette is intentionally limited to gold and black to match the browser chrome.
 
 - **Silhouette:** one ring + one node; no more than two masses.
 - **Optical balance:** the node is slightly outside the ring's lower-right quadrant so the ring does not feel like a closed badge.
-- **Gradient:** blue → teal → lime, with a soft radial highlight on the node.
-- **Originality:** no G-bar, no four-point Gemini sparkle, no Google product colour sequence, no existing service silhouette.
+- **Gradient:** warm gold → champagne → deep bronze, with a black node and a thin gold rim.
+- **Originality:** no G-bar, no four-point Gemini sparkle, no Google product colour sequence, no existing service silhouette. The mark is gold/black rather than the blue-led Google product palette.
 - **Transparency:** all edges are vector, with no background tile, so the mark works on light, dark, and photographic surfaces.
 
 At 16 px the ring remains a clean circle and the detached node remains a separate dot. More detailed concepts (03 and 06) were rejected as the primary mark because their internal gaps collapse at that size.

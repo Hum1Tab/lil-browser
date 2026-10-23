@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-<defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#4A7DFF"/><stop offset=".52" stop-color="#31D6C4"/><stop offset="1" stop-color="#C8F36A"/></linearGradient><radialGradient id="r1" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.28" stop-color="#D8FFF4"/><stop offset="1" stop-color="#34D6C3"/></radialGradient></defs>
+<defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#F7E6A8"/><stop offset=".52" stop-color="#D3AA67"/><stop offset="1" stop-color="#7A4E18"/></linearGradient><radialGradient id="r1" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#F7E6A8"/><stop offset="0.28" stop-color="#171817"/><stop offset="1" stop-color="#34D6C3"/></radialGradient></defs>
 
 <mask id="ring">
   <rect width="1024" height="1024" fill="white"/>
@@ -7,6 +7,6 @@
   <circle cx="748" cy="746" r="118" fill="black"/>
 </mask>
 <circle cx="500" cy="500" r="292" fill="url(#g1)" mask="url(#ring)"/>
-<circle cx="748" cy="746" r="76" fill="url(#r1)"/>
+<circle cx="748" cy="746" r="76" fill="#171817" stroke="#D3AA67" stroke-width="10"/>
 
 </svg>

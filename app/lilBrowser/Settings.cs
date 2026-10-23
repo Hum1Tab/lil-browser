@@ -25,15 +25,18 @@ internal sealed class Settings
                 if (loaded != null)
                 {
                     if (string.IsNullOrWhiteSpace(loaded.Homepage) ||
+                        !UrlPolicy.IsAllowedTypedUrl(loaded.Homepage) ||
                         loaded.Homepage.TrimEnd('/').Equals("https://example.com", StringComparison.OrdinalIgnoreCase))
                     {
                         loaded.Homepage = DefaultHomepage;
                     }
                     if (string.IsNullOrWhiteSpace(loaded.SearchEngine) ||
+                        !UrlPolicy.IsAllowedTypedUrl(loaded.SearchEngine) ||
                         loaded.SearchEngine.TrimEnd('/').Equals("https://duckduckgo.com/?q=", StringComparison.OrdinalIgnoreCase))
                     {
                         loaded.SearchEngine = "https://www.google.com/search?q=";
                     }
+                    if (loaded.Theme is not ("dark" or "light")) loaded.Theme = "dark";
                     return loaded;
                 }
             }

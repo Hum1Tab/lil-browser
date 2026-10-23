@@ -1,6 +1,8 @@
 # lIl Browser
 
-A lightweight Windows browser built with C# / WinForms / WebView2.
+<img src="design/icons/final/lil-service-icon-1024.png" width="96" alt="lIl Browser icon">
+
+A lightweight Windows browser built with C# / WinForms / WebView2. Gold-on-black brand system.
 
 - Custom tab strip, address bar, dark/light themes
 - Bookmarks, history, downloads, private mode, ad blocking, find, zoom, print

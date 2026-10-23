@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-<defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#FFB547"/><stop offset=".5" stop-color="#FF5D8F"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient><linearGradient id="g3b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0" stop-color="#2DD4BF"/><stop offset=".55" stop-color="#3B82F6"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+<defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#F0D58C"/><stop offset=".5" stop-color="#D3AA67"/><stop offset="1" stop-color="#7A4E18"/></linearGradient><linearGradient id="g3b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0" stop-color="#D3AA67"/><stop offset=".55" stop-color="#E7C276"/><stop offset="1" stop-color="#8C5E22"/></linearGradient></defs>
 
 <g transform="rotate(-28 512 512)">
   <rect x="210" y="430" width="604" height="164" rx="82" fill="url(#g3)"/>
@@ -7,6 +7,6 @@
 <g transform="rotate(28 512 512)">
   <rect x="210" y="430" width="604" height="164" rx="82" fill="url(#g3b)" opacity="0.92"/>
 </g>
-<circle cx="512" cy="512" r="70" fill="#FFF3DA"/>
+<circle cx="512" cy="512" r="70" fill="#171817" stroke="#D3AA67" stroke-width="10"/>
 
 </svg>

@@ -279,7 +279,9 @@ internal sealed class MainForm : Form
 
     private void OpenUpdate()
     {
-        _ = CreateTabAsync(_updateInfo?.Url ?? UpdateChecker.RepositoryUrl);
+        var url = _updateInfo?.Url;
+        if (!UrlPolicy.IsTrustedUpdateUrl(url)) url = UpdateChecker.RepositoryUrl;
+        _ = CreateTabAsync(url);
     }
 
     private void ApplyDarkTitleBar()
@@ -797,6 +799,7 @@ internal sealed class MainForm : Form
         core.Settings.IsGeneralAutofillEnabled = false;
         core.Settings.AreHostObjectsAllowed = false;
         core.Settings.IsWebMessageEnabled = false;
+        core.Settings.IsSwipeNavigationEnabled = false;
 
         try
         {
@@ -824,10 +827,21 @@ internal sealed class MainForm : Form
         core.NewWindowRequested += (_, e) =>
         {
             e.Handled = true;
+            if (!UrlPolicy.IsAllowedPopup(e.Uri))
+            {
+                _status.Text = "安全でないポップアップをブロックしました";
+                return;
+            }
             _ = CreateTabAsync(e.Uri);
         };
         core.NavigationStarting += (_, e) =>
         {
+            if (!UrlPolicy.IsAllowedNavigation(e.Uri))
+            {
+                e.Cancel = true;
+                _status.Text = "安全でない URL をブロックしました";
+                return;
+            }
             _stop.Enabled = true;
             _statusTimer.Stop();
             _status.Text = "読み込み中…";
@@ -924,8 +938,10 @@ internal sealed class MainForm : Form
 
     private static string PermissionKey(CoreWebView2PermissionRequestedEventArgs e)
     {
-        var host = Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri) ? uri.Host : e.Uri;
-        return $"{e.PermissionKind}|{host}";
+        var origin = Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri)
+            ? UrlPolicy.PermissionOrigin(uri)
+            : "unknown";
+        return $"{e.PermissionKind}|{origin}";
     }
 
     private void OnDownloadStarting(object? sender, CoreWebView2DownloadStartingEventArgs e)
@@ -1031,9 +1047,16 @@ internal sealed class MainForm : Form
 
     private void Navigate(WebView2 web, string url)
     {
+        var target = string.IsNullOrWhiteSpace(url) ? _settings.Homepage : url;
+        if (!UrlPolicy.IsAllowedNavigation(target))
+        {
+            _status.Text = "安全でない URL をブロックしました";
+            return;
+        }
+
         try
         {
-            web.CoreWebView2.Navigate(string.IsNullOrWhiteSpace(url) ? _settings.Homepage : url);
+            web.CoreWebView2.Navigate(target);
         }
         catch (Exception ex)
         {
@@ -1049,6 +1072,11 @@ internal sealed class MainForm : Form
         string url;
         if (text.Contains("://", StringComparison.Ordinal))
         {
+            if (!UrlPolicy.IsAllowedTypedUrl(text))
+            {
+                _status.Text = "この URL スキームは開けません";
+                return;
+            }
             url = text;
         }
         else if (text.Contains('.') && !text.Contains(' '))
@@ -1058,6 +1086,12 @@ internal sealed class MainForm : Form
         else
         {
             url = _settings.SearchEngine + Uri.EscapeDataString(text);
+        }
+
+        if (!UrlPolicy.IsAllowedNavigation(url))
+        {
+            _status.Text = "安全でない URL をブロックしました";
+            return;
         }
         CurrentCore()?.Navigate(url);
     }
