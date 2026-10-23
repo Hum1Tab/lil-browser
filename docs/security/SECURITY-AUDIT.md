@@ -136,6 +136,28 @@ Camera, microphone, geolocation, notifications, clipboard read/write, file read/
 Source path: `MainForm_FormClosing`.
 
 Private windows use a unique `%TEMP%\\lIlBrowser-private-<guid>` profile. On close the app disposes the WebView2 controls, retries deletion, and asks Windows to delete a locked tree on reboot. This is still best-effort, not a forensic-erasure guarantee.
+
+### SEC-013 — external URI scheme launch (fixed)
+
+Source path: `LaunchingExternalUriScheme`.
+
+WebView2 can hand a non-web URI to the OS even when top-level navigation is blocked. The
+host now cancels every external-scheme launch attempt. This prevents a page from opening
+`mailto:`, custom protocol handlers, or other registered OS applications without an
+explicit browser feature.
+
+### SEC-014 — page-initiated window close (fixed)
+
+Source path: `WindowCloseRequested`.
+
+A page calling `window.close()` no longer closes the whole browser. The event is marked
+handled and only the owning tab is closed.
+
+### SEC-015 — Chrome-style frame and scheme coverage
+
+`FrameNavigationStarting` applies the same allowlist as top-level navigation, so a
+malicious iframe cannot load `file:` or an external scheme. Address-bar, redirect, popup,
+frame, and external-launch paths are now covered separately.
 ## Residual risks / needs validation
 
 1. **Local executable signing**: the build uses a local self-signed certificate. Other

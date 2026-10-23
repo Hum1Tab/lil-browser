@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1
+
+- Cancel page-initiated external URI scheme launches (`mailto:`, custom protocols).
+- Page `window.close()` now closes only its tab, not the whole browser.
+- Fullscreen safety bar displays an ASCII/punycode host for IDN clarity.
+- Bounded update-manifest response size.
+- Additional known-attack-path fixes from the security review.
+
 ## 0.4.0
 
 ### Security release

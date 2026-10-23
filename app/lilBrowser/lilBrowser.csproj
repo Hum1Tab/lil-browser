@@ -12,7 +12,7 @@
     <ApplicationIcon>app.ico</ApplicationIcon>
     <AssemblyName>lIlBrowser</AssemblyName>
     <RootNamespace>PxBrowser</RootNamespace>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <Company>lIl</Company>
     <Product>lIl Browser</Product>
     <AssemblyTitle>lIl Browser</AssemblyTitle>

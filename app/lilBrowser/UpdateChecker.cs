@@ -26,7 +26,7 @@ internal static class UpdateChecker
 
     public static async Task<UpdateInfo?> CheckAsync(CancellationToken cancellationToken = default)
     {
-        using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(8) };
+        using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(8), MaxResponseContentBufferSize = 1_000_000 };
         http.DefaultRequestHeaders.UserAgent.ParseAdd("lIlBrowser/0.4");
 
         var manifestBytes = await http.GetByteArrayAsync(ManifestUrl, cancellationToken);

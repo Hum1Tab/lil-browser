@@ -17,7 +17,7 @@ Reference baseline:
 
 | # | Check | Status | Evidence / remaining work |
 |---|-------|--------|---------------------------|
-| 1 | URL, redirect, dangerous schemes | **Implemented** | `UrlPolicy` is enforced at address input, top-level navigation, frame navigation, and popups. `file:`, `javascript:`, `data:`, and OS schemes are rejected. Manual `file:///` test was blocked and the address bar was restored. |
+| 1 | URL, redirect, dangerous schemes | **Implemented** | `UrlPolicy` is enforced at address input, top-level navigation, frame navigation, and popups. `file:`, `javascript:`, `data:`, and OS schemes are rejected. External-scheme launches are cancelled. Manual `file:///` test was blocked and the address bar was restored. |
 | 2 | WebView2 <-> OS permission boundary | **Implemented / partial** | Host objects and web messages are disabled; DevTools, password autosave, autofill, and swipe navigation are disabled. WebView2 remains a Microsoft-engine boundary. No native bridge exists. Dynamic renderer exploit testing still requires a sandbox. |
 | 3 | Cookie / session / profile isolation | **Partial** | Normal and private profiles use separate WebView2 user-data folders. Private windows use a unique `%TEMP%\\lIlBrowser-private-<guid>` folder and best-effort deletion with reboot fallback. Cross-site cookie behavior is delegated to WebView2/Site Isolation. |
 | 4 | Popups and fullscreen | **Implemented** | Popups require `IsUserInitiated`, a safe scheme, max 24 tabs, and max 4 popups per 10 s. HTML fullscreen shows a host + `Esc で終了` safety bar. `fullscreenNotice=true` verified. |

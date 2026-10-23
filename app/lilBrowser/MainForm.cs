@@ -2210,7 +2210,7 @@ internal sealed class MainForm : Form
     private void ShowAbout()
     {
         PxMessageBox.Info(this, "lIl Browser について",
-            "lIl Browser 0.4.0\n\n"
+            "lIl Browser 0.4.1\n\n"
             + "メモリ軽量・プライバシー・制御に絞った Windows ブラウザ MVP。\n"
             + "Chrome 拡張、Google の完全ログイン、Netflix の DRM 再生は対象外です。\n"
             + "起動は Edge より遅いです。\n\n"
