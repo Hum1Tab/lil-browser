@@ -473,7 +473,7 @@ internal sealed class MainForm : Form
             Renderer = new Hum1ToolStripRenderer(),
         };
         _menu = context;
-        context.Items.Add("新しいタブ", null, async (_, _) => await CreateTabAsync(NewTabUrl));
+        context.Items.Add("新しいタブ", null, async (_, _) => await CreateTabAsync(NewTabUrl, focusAddress: true));
         context.Items.Add("閉じたタブを開く", null, (_, _) => ReopenClosedTab());
         context.Items.Add("新しいプライベートウィンドウ", null, (_, _) =>
             new MainForm(true, false, _smokeUrl, _outDir).Show());
@@ -740,7 +740,7 @@ internal sealed class MainForm : Form
         }
     }
 
-    private async Task CreateTabAsync(string url)
+    private async Task CreateTabAsync(string url, bool focusAddress = false)
     {
         var page = new BrowserTab { Text = "New Tab", Padding = new Padding(0), BackColor = Theme.Ink };
         var web = new WebView2
@@ -778,6 +778,13 @@ internal sealed class MainForm : Form
         Wire(web, page);
         Navigate(web, url);
         SyncAddress();
+
+        if (focusAddress)
+        {
+            await Task.Delay(60);
+            _address.Focus();
+            _address.SelectAll();
+        }
     }
 
     private void Wire(WebView2 web, BrowserTab page)
@@ -1181,7 +1188,7 @@ internal sealed class MainForm : Form
         }
         else if (e.Control && e.KeyCode == Keys.T)
         {
-            _ = CreateTabAsync(NewTabUrl);
+            _ = CreateTabAsync(NewTabUrl, focusAddress: true);
             e.SuppressKeyPress = true;
         }
         else if (e.Control && e.KeyCode == Keys.W)
@@ -1511,7 +1518,7 @@ internal sealed class MainForm : Form
         var plus = TabPlusRect();
         if (plus.Width > 0 && plus.Contains(e.Location))
         {
-            _ = CreateTabAsync(NewTabUrl);
+            _ = CreateTabAsync(NewTabUrl, focusAddress: true);
             _hoverTabPlus = false;
             _tabBar.Invalidate();
             return;
