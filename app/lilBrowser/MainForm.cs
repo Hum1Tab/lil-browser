@@ -49,6 +49,11 @@ internal sealed class MainForm : Form
     private readonly Panel _findPanel = new() { Dock = DockStyle.Bottom, Height = 38, Visible = false };
     private readonly TextBox _findBox = new() { Width = 320 };
     private readonly Label _findLabel = new() { Text = "", AutoSize = true, Padding = new Padding(6, 8, 0, 0) };
+    private readonly Panel _fullscreenBar = new() { Dock = DockStyle.Top, Height = 32, Visible = false };
+    private readonly Label _fullscreenLabel = new() { Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
+    private readonly Queue<DateTime> _popupTimes = new();
+    private const int MaxTabs = 24;
+    private const int PopupLimit = 4;
 
     private ToolStrip _strip = null!;
     private StatusStrip _statusStrip = null!;
@@ -568,6 +573,12 @@ internal sealed class MainForm : Form
         Controls.Add(strip);
         Controls.Add(_findPanel);
         Controls.Add(_tabBar);
+        _fullscreenBar.BackColor = Theme.InkSoft;
+        _fullscreenLabel.ForeColor = Theme.Gold;
+        _fullscreenLabel.Font = new Font("Yu Gothic UI", 9F);
+        _fullscreenBar.Controls.Add(_fullscreenLabel);
+        Controls.Add(_fullscreenBar);
+        _fullscreenBar.BringToFront();
         // The status strip is intentionally not added to the form. The bottom
         // bar created noise ("遮断", "完了") and the page itself shows errors.
         _statusStrip.Visible = false;
@@ -605,6 +616,8 @@ internal sealed class MainForm : Form
         _findBox.BackColor = Theme.InkSoft;
         _findBox.ForeColor = Theme.Cream;
         _findLabel.ForeColor = Theme.Cream;
+        _fullscreenBar.BackColor = Theme.InkSoft;
+        _fullscreenLabel.ForeColor = Theme.Gold;
         foreach (Control control in _findPanel.Controls)
         {
             control.ForeColor = Theme.Cream;
@@ -827,11 +840,34 @@ internal sealed class MainForm : Form
         core.NewWindowRequested += (_, e) =>
         {
             e.Handled = true;
+            if (!e.IsUserInitiated)
+            {
+                _status.Text = "ユーザー操作のないポップアップをブロックしました";
+                return;
+            }
             if (!UrlPolicy.IsAllowedPopup(e.Uri))
             {
                 _status.Text = "安全でないポップアップをブロックしました";
                 return;
             }
+            if (_tabs.TabCount >= MaxTabs)
+            {
+                _status.Text = "タブ数の上限に達しました";
+                return;
+            }
+
+            var now = DateTime.UtcNow;
+            while (_popupTimes.Count > 0 && now - _popupTimes.Peek() > TimeSpan.FromSeconds(10))
+            {
+                _popupTimes.Dequeue();
+            }
+            if (_popupTimes.Count >= PopupLimit)
+            {
+                _status.Text = "ポップアップの頻度が高すぎるためブロックしました";
+                return;
+            }
+
+            _popupTimes.Enqueue(now);
             _ = CreateTabAsync(e.Uri);
         };
         core.NavigationStarting += (_, e) =>
@@ -907,7 +943,8 @@ internal sealed class MainForm : Form
     private void OnPermissionRequested(object? sender, CoreWebView2PermissionRequestedEventArgs e)
     {
         var key = PermissionKey(e);
-        if (!_private && _settings.PermissionDecisions.TryGetValue(key, out var saved) &&
+        var sessionOnly = IsSessionOnlyPermission(e.PermissionKind);
+        if (!_private && !sessionOnly && _settings.PermissionDecisions.TryGetValue(key, out var saved) &&
             Enum.TryParse<CoreWebView2PermissionState>(saved, out var savedState))
         {
             e.State = savedState;
@@ -924,10 +961,14 @@ internal sealed class MainForm : Form
         if (dlg.ShowDialog(this) == DialogResult.OK)
         {
             e.State = dlg.Allow ? CoreWebView2PermissionState.Allow : CoreWebView2PermissionState.Deny;
-            if (dlg.Remember && !_private)
+            if (dlg.Remember && !_private && !sessionOnly)
             {
                 _settings.PermissionDecisions[key] = e.State.ToString();
                 _settings.Save();
+            }
+            else if (sessionOnly)
+            {
+                _status.Text = "この権限は今回のセッションだけ有効です";
             }
         }
         else
@@ -942,6 +983,13 @@ internal sealed class MainForm : Form
             ? UrlPolicy.PermissionOrigin(uri)
             : "unknown";
         return $"{e.PermissionKind}|{origin}";
+    }
+
+    private static bool IsSessionOnlyPermission(CoreWebView2PermissionKind kind)
+    {
+        return kind.ToString() is "Camera" or "Microphone" or "Geolocation" or "Notifications"
+            or "ClipboardRead" or "ClipboardWrite" or "FileReadWrite" or "LocalFonts"
+            or "Midi" or "OtherSensors";
     }
 
     private void OnDownloadStarting(object? sender, CoreWebView2DownloadStartingEventArgs e)
@@ -963,6 +1011,40 @@ internal sealed class MainForm : Form
             item.Received = operation.BytesReceived;
         };
         e.Handled = false;
+    }
+
+    private static readonly HashSet<string> RiskyDownloadExtensions = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ".exe", ".msi", ".msp", ".bat", ".cmd", ".ps1", ".vbs", ".vbe", ".js", ".jse",
+        ".wsf", ".wsh", ".hta", ".scr", ".com", ".pif", ".reg", ".lnk", ".jar", ".py", ".sh", ".dll",
+    };
+
+    private bool ConfirmOpenDownload(string path)
+    {
+        var extension = Path.GetExtension(path);
+        if (!RiskyDownloadExtensions.Contains(extension)) return true;
+
+        var mark = HasMarkOfTheWeb(path)
+            ? "インターネット由来のマーク（MOTW）があります。"
+            : "インターネット由来のマーク（MOTW）が見つかりません。";
+        return PxMessageBox.Confirm(this, "実行ファイルの確認",
+            $"{Path.GetFileName(path)}\n\n"
+            + "実行可能なファイルの可能性があります。\n"
+            + mark + "\n\n"
+            + "提供元を確認してから開きますか？");
+    }
+
+    private static bool HasMarkOfTheWeb(string path)
+    {
+        try
+        {
+            using var stream = new FileStream(path + ":Zone.Identifier", FileMode.Open, FileAccess.Read, FileShare.Read);
+            return stream.Length > 0;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private void ShowDownloads()
@@ -1008,11 +1090,12 @@ internal sealed class MainForm : Form
             if (list.SelectedItems.Count == 0 || list.SelectedItems[0].Tag is not DownloadItem item) return;
             try
             {
-                if (File.Exists(item.FilePath))
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(item.FilePath)
-                    {
-                        UseShellExecute = true,
-                    });
+                if (!File.Exists(item.FilePath)) return;
+                if (!ConfirmOpenDownload(item.FilePath)) return;
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(item.FilePath)
+                {
+                    UseShellExecute = true,
+                });
             }
             catch { }
         };
@@ -1119,6 +1202,7 @@ internal sealed class MainForm : Form
         {
             _address.Text = source.AbsoluteUri;
         }
+        _address.SetSecurity(web?.Source);
         SyncBookmarkButton();
     }
 
@@ -1665,6 +1749,7 @@ internal sealed class MainForm : Form
             _statusStrip.Visible = false;
             _findPanel.Visible = false;
             _tabBar.Visible = false;
+            ShowFullscreenNotice("全画面: ブラウザ — F11 / Esc で終了");
         }
         else
         {
@@ -1674,8 +1759,30 @@ internal sealed class MainForm : Form
             _strip.Visible = true;
             _statusStrip.Visible = true;
             _tabBar.Visible = true;
+            _fullscreenBar.Visible = false;
         }
         UpdateTabStripFill();
+    }
+
+    private void ShowFullscreenNotice(string text)
+    {
+        _fullscreenLabel.Text = text;
+        _fullscreenBar.Visible = true;
+        _fullscreenBar.BringToFront();
+    }
+
+    private string FullscreenSiteText()
+    {
+        var host = "このサイト";
+        try
+        {
+            if (CurrentWeb()?.Source is { } source && !string.IsNullOrWhiteSpace(source.Host))
+            {
+                host = source.Host;
+            }
+        }
+        catch { }
+        return $"全画面: {host} — Esc で終了";
     }
 
     private void EnterHtmlFullscreen()
@@ -1695,6 +1802,7 @@ internal sealed class MainForm : Form
         _strip.Visible = false;
         _tabBar.Visible = false;
         _findPanel.Visible = false;
+        ShowFullscreenNotice(FullscreenSiteText());
         foreach (var candidate in _views.Values)
         {
             if (candidate.Parent is Panel host) host.Padding = Padding.Empty;
@@ -1712,6 +1820,7 @@ internal sealed class MainForm : Form
         WindowState = _htmlPrevState;
         _strip.Visible = true;
         _tabBar.Visible = true;
+        _fullscreenBar.Visible = false;
         foreach (var candidate in _views.Values)
         {
             if (candidate.Parent is Panel host) host.Padding = new Padding(2);
@@ -2113,6 +2222,10 @@ internal sealed class MainForm : Form
             {
                 try { web.Dispose(); } catch { }
             }
+            if (_private)
+            {
+                try { Directory.Delete(AppPaths.PrivateUdfPath, true); } catch { }
+            }
             Close();
         }
     }
@@ -2279,6 +2392,8 @@ internal sealed class MainForm : Form
             var hitParam = (edgePoint.Y << 16) | (edgePoint.X & 0xFFFF);
             result["edgeHitTest"] = SendMessage(Handle, WmNcHitTest, IntPtr.Zero, (IntPtr)hitParam).ToInt64();
             result["contentPadding"] = (CurrentWeb()?.Parent as Panel)?.Padding.Left;
+            result["fullscreenNotice"] = _fullscreenBar.Visible;
+            result["noticeText"] = _fullscreenLabel.Text;
             if (_htmlFullscreen) ExitHtmlFullscreen();
         }
         catch (Exception ex)
@@ -2591,6 +2706,10 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
 {
     private readonly Panel _panel;
     private readonly TextBox _box;
+    private readonly Label _securityBadge;
+    private readonly ToolTip _toolTip = new();
+    private bool _hasSecurity;
+    private bool _secure;
 
     public RoundedAddressHost() : base(new Panel())
     {
@@ -2611,9 +2730,21 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
             Font = new Font("Yu Gothic UI", 9.5F),
             TextAlign = HorizontalAlignment.Left,
         };
+        _securityBadge = new Label
+        {
+            AutoSize = false,
+            Width = 22,
+            Height = 18,
+            TextAlign = ContentAlignment.MiddleCenter,
+            Font = new Font("Segoe Fluent Icons", 8.5F),
+            BackColor = Theme.InkSoft,
+            ForeColor = Theme.Gold,
+            Visible = false,
+        };
         _box.Enter += (_, _) => _panel.Invalidate();
         _box.Leave += (_, _) => _panel.Invalidate();
         _panel.Controls.Add(_box);
+        _panel.Controls.Add(_securityBadge);
         AutoSize = false;
         Size = new Size(620, 32);
         LayoutAddressBox();
@@ -2631,11 +2762,33 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
     public new bool Focus() => _box.Focus();
     public void SelectAll() => _box.SelectAll();
 
+    public void SetSecurity(Uri? uri)
+    {
+        var enabled = uri != null &&
+                      (uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase) ||
+                       uri.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase));
+        _hasSecurity = enabled;
+        _secure = enabled && uri!.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+        _securityBadge.Visible = enabled;
+        if (enabled)
+        {
+            _securityBadge.Text = _secure ? "\uE72E" : "\uE785";
+            _securityBadge.ForeColor = _secure ? Theme.Gold : Color.FromArgb(217, 119, 6);
+            _toolTip.SetToolTip(_securityBadge, _secure
+                ? "HTTPS: 暗号化された接続"
+                : "HTTP: 暗号化されていません");
+        }
+        LayoutAddressBox();
+        _panel.Invalidate();
+    }
+
     public void ApplyTheme()
     {
         _panel.BackColor = Theme.Ink;
         _box.BackColor = Theme.InkSoft;
         _box.ForeColor = Theme.Cream;
+        _securityBadge.BackColor = Theme.InkSoft;
+        _securityBadge.ForeColor = _secure ? Theme.Gold : Color.FromArgb(217, 119, 6);
         LayoutAddressBox();
         _panel.Invalidate();
     }
@@ -2645,8 +2798,13 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
         if (_panel.ClientSize.Width <= 0 || _panel.ClientSize.Height <= 0) return;
         var height = Math.Min(24, Math.Max(18, _panel.ClientSize.Height - 8));
         _box.Height = height;
-        _box.Left = 14;
-        _box.Width = Math.Max(0, _panel.ClientSize.Width - 28);
+        _securityBadge.Left = 14;
+        _securityBadge.Width = 22;
+        _securityBadge.Height = 18;
+        _securityBadge.Top = (_panel.ClientSize.Height - 18) / 2;
+        var left = _hasSecurity ? 42 : 14;
+        _box.Left = left;
+        _box.Width = Math.Max(0, _panel.ClientSize.Width - left - 14);
         _box.Top = (_panel.ClientSize.Height - height) / 2 + 1;
     }
 
@@ -2657,8 +2815,10 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
         rect.Inflate(-1, -1);
         using var path = RoundedRect(rect, 16);
         using var fill = new SolidBrush(Theme.InkSoft);
-        using var border = new Pen(_box.Focused ? Theme.Gold : Theme.Line,
-            _box.Focused ? 1.5F : 1F);
+        var borderColor = _box.Focused
+            ? Theme.Gold
+            : _hasSecurity && !_secure ? Color.FromArgb(217, 119, 6) : Theme.Line;
+        using var border = new Pen(borderColor, _box.Focused ? 1.5F : 1F);
         graphics.SmoothingMode = SmoothingMode.AntiAlias;
         graphics.FillPath(fill, path);
         graphics.DrawPath(border, path);

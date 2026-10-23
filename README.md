@@ -43,7 +43,7 @@ The installer copies the app to `%LOCALAPPDATA%\Programs\lIlBrowser`, creates a 
 
 ## Update check
 
-`app/lilBrowser/UpdateChecker.cs` reads the latest commit of `Hum1Tab/lil-browser` from the GitHub API. If the commit is newer than the local executable, the app shows the update button in the top-right toolbar. The button opens the commit page; it does not install automatically.
+`app/lilBrowser/UpdateChecker.cs` reads the latest commit of `Hum1Tab/lil-browser` from the GitHub API. If the latest SHA differs from the Git SHA embedded at build time, the app shows the update button in the top-right toolbar. The button opens the commit page; it does not install automatically.
 
 ## Signing
 

@@ -82,6 +82,58 @@ Confirmed settings:
 - Swipe navigation disabled.
 - Built-in renderer certificate validation remains enabled by WebView2.
 
+
+### SEC-006 — popup amplification (fixed)
+
+Source path: `NewWindowRequested`.
+
+Before: the host checked the URL scheme but did not require a user gesture, and there was no tab/rate cap.
+
+Fix:
+
+- reject `!e.IsUserInitiated`;
+- cap tabs at 24;
+- allow at most 4 popups per 10 seconds.
+
+### SEC-007 — fullscreen deception (fixed)
+
+Source path: `EnterHtmlFullscreen`, `ToggleFullscreen`.
+
+Added a persistent 32px safety bar while the page is fullscreen:
+
+- displays the site host;
+- states `Esc で終了`;
+- is removed on exit and restored after F11 / HTML fullscreen.
+
+### SEC-008 — update identity (fixed)
+
+Source path: `UpdateChecker`, `lilBrowser.csproj`.
+
+The build now embeds the Git commit SHA into `AssemblyInformationalVersion`. The update check compares the installed SHA with GitHub's latest SHA instead of relying only on file timestamps. The file timestamp remains a fallback for local builds without Git.
+
+### SEC-009 — HTTP indication (fixed)
+
+Source path: `RoundedAddressHost`, `SyncAddress`.
+
+HTTPS pages show a gold lock. HTTP pages show an amber open-lock indicator and an amber address-bar border. The tooltip states whether the connection is encrypted.
+
+### SEC-010 — download open warning (fixed)
+
+Source path: `ShowDownloads`, `ConfirmOpenDownload`.
+
+Executable/script extensions (`.exe`, `.msi`, `.ps1`, `.bat`, `.js`, `.lnk`, etc.) now require confirmation before `Process.Start`. The dialog also reports whether the file has a Mark-of-the-Web alternate data stream.
+
+### SEC-011 — sensitive permissions are session-only (fixed)
+
+Source path: `OnPermissionRequested`.
+
+Camera, microphone, geolocation, notifications, clipboard read/write, file read/write, local fonts, MIDI, and other sensor permissions are no longer persisted even if the user checks “remember”. They are asked again in each session. Previously saved sensitive decisions are ignored.
+
+### SEC-012 — private profile cleanup (best effort)
+
+Source path: `MainForm_FormClosing`.
+
+On private-window close, the app attempts to delete its dedicated `WebView2Private` profile directory after disposing the WebView2 controls. Windows may retain locked files; this is not a guarantee of forensic erasure.
 ## Residual risks / needs validation
 
 1. **Local executable signing**: the build uses a local self-signed certificate. Other

@@ -43,8 +43,32 @@ internal static class UpdateChecker
             return null;
         }
 
+        var embedded = EmbeddedCommit();
+        if (embedded != null)
+        {
+            return sha.StartsWith(embedded, StringComparison.OrdinalIgnoreCase)
+                ? null
+                : new UpdateInfo(sha, committed, url);
+        }
+
+        // Fallback for local builds that do not have Git metadata.
         return committed > BuildTimeUtc().AddMinutes(1)
             ? new UpdateInfo(sha, committed, url)
+            : null;
+    }
+
+    private static string? EmbeddedCommit()
+    {
+        var informational = Assembly.GetExecutingAssembly()
+            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+        if (string.IsNullOrWhiteSpace(informational)) return null;
+
+        var index = informational.IndexOf('+');
+        if (index < 0 || index + 1 >= informational.Length) return null;
+
+        var commit = informational[(index + 1)..].Trim();
+        return commit.Length >= 7 && !commit.Equals("unknown", StringComparison.OrdinalIgnoreCase)
+            ? commit
             : null;
     }
 

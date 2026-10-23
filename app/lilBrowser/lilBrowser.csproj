@@ -23,5 +23,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <Target Name="SetGitRevision" BeforeTargets="GenerateAssemblyInfo">
+    <Exec Command="git rev-parse --short=12 HEAD" ConsoleToMSBuild="true" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommit" />
+    </Exec>
+    <PropertyGroup>
+      <GitCommit Condition="'$(GitCommit)' == ''">unknown</GitCommit>
+      <InformationalVersion>$(Version)+$(GitCommit)</InformationalVersion>
+    </PropertyGroup>
+  </Target>
 </Project>
 
