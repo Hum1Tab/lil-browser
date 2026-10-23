@@ -4,8 +4,10 @@ namespace PxBrowser;
 
 internal static class AppPaths
 {
-    public static string Root { get; private set; } = Path.Combine(
+    private static readonly string DefaultRoot = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "lIl Browser");
+
+    public static string Root { get; private set; } = DefaultRoot;
 
     public static void Configure(string root)
     {
@@ -25,7 +27,7 @@ internal static class AppPaths
     {
         var legacy = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PxBrowser");
-        if (Directory.Exists(legacy) && !Directory.Exists(Root))
+        if (Root == DefaultRoot && Directory.Exists(legacy) && !Directory.Exists(Root))
         {
             Directory.CreateDirectory(Root);
             foreach (var name in new[] { "settings.json", "history.json", "bookmarks.json", "session.json" })
