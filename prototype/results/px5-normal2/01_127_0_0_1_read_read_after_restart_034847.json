@@ -1,0 +1,21 @@
+{
+  "name": "read-after-restart",
+  "requested": "http://127.0.0.1:8767/read",
+  "finalUrl": "http://127.0.0.1:8767/read",
+  "title": "PX5 read",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "adblockMode": "none",
+  "navMs": 35,
+  "requests": 0,
+  "blocked": 0,
+  "performance": "{\u0022duration\u0022:21.200000047683716,\u0022loadEventEnd\u0022:21.200000047683716,\u0022domContentLoaded\u0022:21,\u0022resources\u0022:1,\u0022images\u0022:0}",
+  "bodyText": "PX5 read\ncookie=px5cookie=1\nlocal=1\nsession=\nidb=px5idb",
+  "actionResults": [],
+  "screenshot": "C:\\Temp\\px5-normal2\\01_127_0_0_1_read_read_after_restart_034847.png",
+  "dom": "C:\\Temp\\px5-normal2\\01_127_0_0_1_read_read_after_restart_034847.html",
+  "timestamp": "2026-10-23T03:48:47.4571258\u002B09:00"
+}

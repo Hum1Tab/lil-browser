@@ -1,0 +1,21 @@
+{
+  "name": "run2",
+  "requested": "http://127.0.0.1:8765/?run=2",
+  "finalUrl": "http://127.0.0.1:8765/?run=2",
+  "title": "PX2 adblock cost page",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "adblockMode": "all",
+  "navMs": 256,
+  "requests": 501,
+  "blocked": 250,
+  "performance": "{\u0022duration\u0022:254.60000002384186,\u0022loadEventEnd\u0022:254.60000002384186,\u0022domContentLoaded\u0022:23.5,\u0022resources\u0022:250,\u0022images\u0022:500}",
+  "bodyText": "PX2\n\n50 ad images and 50 content images.\n\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ",
+  "actionResults": [],
+  "screenshot": "C:\\Temp\\px2b-all\\02_127_0_0_1__run2_032201.png",
+  "dom": "C:\\Temp\\px2b-all\\02_127_0_0_1__run2_032201.html",
+  "timestamp": "2026-10-23T03:22:02.0080319\u002B09:00"
+}

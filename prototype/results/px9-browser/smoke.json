@@ -1,0 +1,12 @@
+{
+  "private": false,
+  "tabs": 2,
+  "history": 2,
+  "blocked": 1,
+  "title": "PX Test Page",
+  "body": "PX Read Page\ncookie=pxtest=1\nlocal=1",
+  "zoom": 1.2,
+  "find": "true",
+  "fullscreen": "True/True",
+  "settingsRoundTrip": true
+}

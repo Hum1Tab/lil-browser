@@ -1,0 +1,20 @@
+[
+  {
+    "name": "bitmovin-play",
+    "url": "https://bitmovin.com/demos/drm",
+    "waitMs": 6000,
+    "actions": [
+      "(() => { const v=document.querySelector('video'); if(!v) return 'no-video'; v.muted=true; const p=v.play(); return 'play-called:'+(p?'promise':'no-promise'); })()",
+      "new Promise(r => setTimeout(() => r('waited'), 8000))",
+      "(() => { const v=document.querySelector('video'); if(!v) return JSON.stringify({found:false,text:document.body.innerText.slice(0,1000)}); return JSON.stringify({found:true,readyState:v.readyState,networkState:v.networkState,currentTime:v.currentTime,duration:v.duration,paused:v.paused,ended:v.ended,error:v.error?{code:v.error.code,message:v.error.message}:null,src:(v.src||'').slice(0,120),text:document.body.innerText.slice(0,1200)}); })()"
+    ],
+    "postWaitMs": 2000
+  },
+  {
+    "name": "spotify-web",
+    "url": "https://open.spotify.com/",
+    "waitMs": 6000,
+    "actions": [],
+    "postWaitMs": 2000
+  }
+]

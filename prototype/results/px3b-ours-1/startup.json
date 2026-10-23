@@ -1,0 +1,61 @@
+﻿{
+    "mode":  "ours",
+    "tabs":  1,
+    "runs":  [
+                 {
+                     "run":  "301d74ff7457412f8a83d32c26d5a0b9",
+                     "tabs":  1,
+                     "mode":  "ours",
+                     "startupMs":  6293.6,
+                     "beacon":  {
+                                    "time":  1792694154.7056415,
+                                    "run":  "301d74ff7457412f8a83d32c26d5a0b9",
+                                    "tab":  "1",
+                                    "perf":  "4449.800000011921",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  6243,
+                     "loadMs":  [
+                                    4453
+                                ],
+                     "launch":  1792694148412
+                 },
+                 {
+                     "run":  "10473b4a21fb40e2b77fec988493c04c",
+                     "tabs":  1,
+                     "mode":  "ours",
+                     "startupMs":  5134.8,
+                     "beacon":  {
+                                    "time":  1792694161.0998368,
+                                    "run":  "10473b4a21fb40e2b77fec988493c04c",
+                                    "tab":  "1",
+                                    "perf":  "4551",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  5122.4,
+                     "loadMs":  [
+                                    4554
+                                ],
+                     "launch":  1792694155965
+                 },
+                 {
+                     "run":  "5f37e103d51e43a5b90dc60887b4c409",
+                     "tabs":  1,
+                     "mode":  "ours",
+                     "startupMs":  4101.1,
+                     "beacon":  {
+                                    "time":  1792694166.3191013,
+                                    "run":  "5f37e103d51e43a5b90dc60887b4c409",
+                                    "tab":  "1",
+                                    "perf":  "3434.5",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  4090,
+                     "loadMs":  [
+                                    3438
+                                ],
+                     "launch":  1792694162218
+                 }
+             ],
+    "medianMs":  5134.8
+}

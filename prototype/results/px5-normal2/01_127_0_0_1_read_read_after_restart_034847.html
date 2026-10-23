@@ -1,0 +1,28 @@
+<html lang="ja"><head><meta charset="utf-8"><title>PX5 read</title></head>
+<body><h1>PX5 read</h1><pre id="out">cookie=px5cookie=1
+local=1
+session=
+idb=px5idb</pre>
+<script>
+const lines = [];
+lines.push('cookie=' + document.cookie);
+lines.push('local=' + (localStorage.getItem('px5local') || ''));
+lines.push('session=' + (sessionStorage.getItem('px5session') || ''));
+const render = () => { document.getElementById('out').textContent = lines.join('\n'); };
+render();
+try {
+  const req = indexedDB.open('px5db', 1);
+  req.onsuccess = (e) => {
+    const db = e.target.result;
+    if (!db.objectStoreNames.contains('s')) { lines.push('idb='); render(); return; }
+    const tx = db.transaction('s', 'readonly');
+    const get = tx.objectStore('s').get('k');
+    get.onsuccess = () => { lines.push('idb=' + (get.result || '')); render(); };
+    get.onerror = () => { lines.push('idb=err'); render(); };
+  };
+  req.onerror = () => { lines.push('idb=open-err'); render(); };
+} catch (e) { lines.push('idb=exc'); render(); }
+setTimeout(render, 500);
+</script>
+
+</body></html>

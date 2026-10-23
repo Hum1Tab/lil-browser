@@ -1,0 +1,178 @@
+{
+  "tool": "audit_article.py",
+  "version": "3.0.1",
+  "generated_at": "2026-10-23T17:48:04.720563+00:00",
+  "inputs": {
+    "article": "D:/my project/ブラウザ/docs/architecture/evidence/article.md",
+    "sources": "D:/my project/ブラウザ/docs/architecture/evidence/sources.csv",
+    "claims": "D:/my project/ブラウザ/docs/architecture/evidence/claims.csv"
+  },
+  "summary": {
+    "readiness": "READY",
+    "critical": 0,
+    "major": 0,
+    "minor": 9,
+    "info": 1,
+    "citations": 127,
+    "unique_sources_cited": 55,
+    "sources_in_ledger": 55,
+    "claims": 40,
+    "load_bearing_claims": 5,
+    "chars": 13872,
+    "paragraphs": 51,
+    "gate_counts": {
+      "G2": {
+        "minor": 9
+      },
+      "G4": {
+        "info": 1
+      }
+    },
+    "checks_run": [
+      "sources",
+      "claims",
+      "citation-markers",
+      "citation-sources",
+      "claim-markers",
+      "text"
+    ],
+    "limitations": [
+      "書誌情報・DOI・URL の実在は確認しない。Crossref / PubMed / 出版社で人間が確認すること。",
+      "引用が主張を本当に支えているかは判定しない。文脈の読解が必要である。",
+      "撤回・訂正の有無は sources.csv の verification に依存する。",
+      "数値の分母・単位・期間・集団の正しさは判定しない。",
+      "過剰表現・AI slop・長文の検出は語彙と長さのヒューリスティックであり、文脈を理解しない。",
+      "日本語の文分割は近似であり、英語の文分割は不完全である。",
+      "論証の妥当性、フレーム批判、反論の強さは判定しない。argument_lint.py と Phase 5 の人間監査が必要である。",
+      "価値前提の妥当性は判定しない。規範的主張は人間が確認すること。"
+    ]
+  },
+  "findings": [
+    {
+      "check": "claim-load-bearing-contested",
+      "severity": "info",
+      "gate": "G4",
+      "line": null,
+      "message": "荷重主張 C02 は contested。本文で反論と限定条件を扱っているか確認する。",
+      "detail": "",
+      "evidence": {
+        "claim_id": "C02"
+      },
+      "id": "F010"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 27,
+      "message": "出典 S33 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S33",
+        "count": 2
+      },
+      "id": "F001"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 31,
+      "message": "出典 S34 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S34",
+        "count": 2
+      },
+      "id": "F002"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 99,
+      "message": "出典 S38 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S38",
+        "count": 2
+      },
+      "id": "F003"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 101,
+      "message": "出典 S39 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S39",
+        "count": 2
+      },
+      "id": "F004"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 103,
+      "message": "出典 S41 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S41",
+        "count": 2
+      },
+      "id": "F005"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 107,
+      "message": "出典 S42 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S42",
+        "count": 2
+      },
+      "id": "F006"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 109,
+      "message": "出典 S43 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S43",
+        "count": 2
+      },
+      "id": "F007"
+    },
+    {
+      "check": "citation-partial-source",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 109,
+      "message": "出典 S46 は partial（一部のみ確認）である（2回）。",
+      "detail": "",
+      "evidence": {
+        "source_id": "S46",
+        "count": 2
+      },
+      "id": "F008"
+    },
+    {
+      "check": "quote-without-locator",
+      "severity": "minor",
+      "gate": "G2",
+      "line": 127,
+      "message": "直接引用に頁・節・段落などの位置情報がない。",
+      "detail": "これらを踏まえると、「Google ログインを必要としないユーザー」という対象定義は、エンジンの制約から逆算したものであり、需要の証拠ではない [C28][S37]。",
+      "evidence": {},
+      "id": "F009"
+    }
+  ]
+}

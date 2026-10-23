@@ -1,0 +1,26 @@
+{
+  "pid": 18180,
+  "udf": "D:\\my project\\\u30D6\u30E9\u30A6\u30B6\\prototype\\results\\px3-ours-5\\udf",
+  "tabs": 5,
+  "url": "http://127.0.0.1:8766/",
+  "startupMs": 7015.5364,
+  "startedAt": "2026-10-23T03:29:44.0326859\u002B09:00",
+  "readyAt": "2026-10-23T03:29:51.0482223\u002B09:00",
+  "loadMs": [
+    4460,
+    48,
+    51,
+    50,
+    53
+  ],
+  "switchMs": [
+    2,
+    0,
+    0,
+    0,
+    0
+  ],
+  "failed": [],
+  "hostPrivateBytes": 14454784,
+  "hostWorkingSet": 59465728
+}

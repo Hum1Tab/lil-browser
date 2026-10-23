@@ -1,0 +1,7 @@
+[
+  {"name":"run1","url":"http://127.0.0.1:8765/?run=1","waitMs":100,"actions":[],"postWaitMs":50},
+  {"name":"run2","url":"http://127.0.0.1:8765/?run=2","waitMs":100,"actions":[],"postWaitMs":50},
+  {"name":"run3","url":"http://127.0.0.1:8765/?run=3","waitMs":100,"actions":[],"postWaitMs":50},
+  {"name":"run4","url":"http://127.0.0.1:8765/?run=4","waitMs":100,"actions":[],"postWaitMs":50},
+  {"name":"run5","url":"http://127.0.0.1:8765/?run=5","waitMs":100,"actions":[],"postWaitMs":50}
+]

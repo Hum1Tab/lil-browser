@@ -1,0 +1,4 @@
+[
+  {"name":"set","url":"http://127.0.0.1:8767/set","waitMs":2500,"actions":[],"postWaitMs":1000},
+  {"name":"read","url":"http://127.0.0.1:8767/read","waitMs":1200,"actions":[],"postWaitMs":1000}
+]

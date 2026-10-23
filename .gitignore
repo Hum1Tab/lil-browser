@@ -1,0 +1,16 @@
+.tools/
+dist/
+**/bin/
+**/obj/
+**/smoke-results/
+*.exe
+*.dll
+*.pdb
+*.zip
+*.log
+*.user
+.vs/
+.idea/
+__pycache__/
+*.pyc
+marks.jsonl

@@ -1,0 +1,12 @@
+﻿{
+    "version":  "156.0.7+g47dbc1d+chromium-156.0.8078.17",
+    "archive":  "cef_binary_156.0.7+g47dbc1d+chromium-156.0.8078.17_windows64.tar.bz2",
+    "archive_bytes":  366862060,
+    "cefclient_present":  false,
+    "cefsimple_present":  false,
+    "bootstrap_exit":  -2147483645,
+    "bootstrap_error":  "Missing module name",
+    "requires":  "Visual Studio 2022 + CMake",
+    "executed":  false,
+    "at":  "2026-10-23T03:58:53.2095813+09:00"
+}

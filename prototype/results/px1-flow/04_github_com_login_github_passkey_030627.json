@@ -1,0 +1,18 @@
+{
+  "name": "github-passkey",
+  "requested": "https://github.com/login",
+  "finalUrl": "https://github.com/login",
+  "title": "Sign in to GitHub \u00B7 GitHub",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "bodyText": "Skip to content\nSign in to GitHub\nUsername or email address\nPassword\nForgot password?\nor\nContinue with Google\nContinue with Apple\n\nNew to GitHub? Create an account\n\nSign in with a passkey\n\nTerms\nPrivacy\nDocs\nContact GitHub Support\nManage cookies\nDo not share my personal information",
+  "actionResults": [
+    "clicked"
+  ],
+  "screenshot": "C:\\Temp\\px1-flow\\04_github_com_login_github_passkey_030627.png",
+  "dom": "C:\\Temp\\px1-flow\\04_github_com_login_github_passkey_030627.html",
+  "timestamp": "2026-10-23T03:06:27.9525910\u002B09:00"
+}

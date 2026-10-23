@@ -1,0 +1,41 @@
+[
+  {
+    "name": "oauth-flow",
+    "url": "https://developers.google.com/oauthplayground/",
+    "waitMs": 5000,
+    "actions": [
+      "(() => { const cb=document.querySelector('#useDefaultOauthCred'); if(cb && !cb.checked) cb.click(); const s=document.querySelector('#scopes'); if(s){ const set=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; set.call(s,'https://www.googleapis.com/auth/userinfo.email'); s.dispatchEvent(new Event('input',{bubbles:true})); s.dispatchEvent(new Event('change',{bubbles:true})); } return JSON.stringify({cb:cb?cb.checked:null,scopes:s?s.value:null,btn:document.querySelector('#authorizeApisButton')?.className}); })()",
+      "new Promise(r => setTimeout(() => r('waited'), 1500))",
+      "(() => { const b=document.querySelector('#authorizeApisButton'); if(!b) return 'no-button'; if((b.className||'').includes('disabled')) return 'still-disabled'; b.click(); return 'clicked'; })()"
+    ],
+    "postWaitMs": 10000
+  },
+  {
+    "name": "google-email",
+    "url": "https://accounts.google.com/ServiceLogin",
+    "waitMs": 5000,
+    "actions": [
+      "(() => { const i=document.querySelector('#identifierId'); if(!i) return 'no-input'; const set=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; set.call(i,'px1.probe.123456789@gmail.com'); i.dispatchEvent(new Event('input',{bubbles:true})); i.dispatchEvent(new Event('change',{bubbles:true})); const b=[...document.querySelectorAll('button')].find(x=>(x.innerText||'').trim()==='次へ'); if(!b) return 'no-button'; b.click(); return 'clicked'; })()"
+    ],
+    "postWaitMs": 10000
+  },
+  {
+    "name": "webauthn-register",
+    "url": "https://webauthn.io/",
+    "waitMs": 5000,
+    "actions": [
+      "(() => { const i=document.querySelector('#input-email'); if(!i) return 'no-input'; const set=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; set.call(i,'px1-test-20261023'); i.dispatchEvent(new Event('input',{bubbles:true})); return 'filled'; })()",
+      "(() => { const b=document.querySelector('#register-button'); if(!b) return 'no-button'; b.click(); return 'clicked'; })()"
+    ],
+    "postWaitMs": 12000
+  },
+  {
+    "name": "github-passkey",
+    "url": "https://github.com/login",
+    "waitMs": 5000,
+    "actions": [
+      "(() => { const b=[...document.querySelectorAll('button')].find(x=>(x.innerText||'').includes('passkey')); if(!b) return 'no-button'; b.click(); return 'clicked'; })()"
+    ],
+    "postWaitMs": 10000
+  }
+]

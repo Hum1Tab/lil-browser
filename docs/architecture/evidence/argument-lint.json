@@ -1,0 +1,31 @@
+{
+  "tool": "argument_lint.py",
+  "version": "3.0.1",
+  "generated_at": "2026-10-23T15:57:10.542711+00:00",
+  "inputs": {
+    "article": "D:/my project/ブラウザ/docs/architecture/evidence/article.md",
+    "claims": "D:/my project/ブラウザ/docs/architecture/evidence/claims.csv",
+    "sources": "D:/my project/ブラウザ/docs/architecture/evidence/sources.csv"
+  },
+  "summary": {
+    "verdict": "PASS",
+    "critical": 0,
+    "major": 0,
+    "minor": 0,
+    "info": 0,
+    "checks_run": [
+      "reasoning-rules",
+      "structure",
+      "claims",
+      "sources",
+      "claim-reasoning"
+    ],
+    "limitations": [
+      "文脈・皮肉・引用・反語を完全には理解しない。",
+      "誤謬の指摘は、修復案とセットで人間が確認すること。",
+      "書誌の実在・引用の妥当性・統計の正しさは判定しない。",
+      "claims.csv の意味的な整合性は、人間の読解が必要である。"
+    ]
+  },
+  "findings": []
+}

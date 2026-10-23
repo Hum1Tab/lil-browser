@@ -1,0 +1,25 @@
+[
+  {
+    "name": "eme-probe",
+    "url": "https://example.com/",
+    "waitMs": 3000,
+    "actions": [
+      "new Promise(async (resolve) => { const out={}; const config=[{initDataTypes:['cenc'], audioCapabilities:[{contentType:'audio/mp4; codecs=\"mp4a.40.2\"'}], videoCapabilities:[{contentType:'video/mp4; codecs=\"avc1.42E01E\"'}]}]; for (const ks of ['com.widevine.alpha','com.microsoft.playready','org.w3.clearkey']) { try { const a=await navigator.requestMediaKeySystemAccess(ks, config); out[ks]='supported:'+a.keySystem; } catch(e) { out[ks]='error:'+e.name+':'+(e.message||''); } } resolve(JSON.stringify(out)); })"
+    ],
+    "postWaitMs": 1000
+  },
+  {
+    "name": "bitmovin-drm",
+    "url": "https://bitmovin.com/demos/drm",
+    "waitMs": 6000,
+    "actions": [],
+    "postWaitMs": 2000
+  },
+  {
+    "name": "netflix",
+    "url": "https://www.netflix.com/",
+    "waitMs": 6000,
+    "actions": [],
+    "postWaitMs": 2000
+  }
+]

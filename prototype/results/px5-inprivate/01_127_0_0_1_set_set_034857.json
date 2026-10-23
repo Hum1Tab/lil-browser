@@ -1,0 +1,21 @@
+{
+  "name": "set",
+  "requested": "http://127.0.0.1:8767/set",
+  "finalUrl": "http://127.0.0.1:8767/set",
+  "title": "PX5 set",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "adblockMode": "none",
+  "navMs": 27,
+  "requests": 0,
+  "blocked": 0,
+  "performance": "{\u0022duration\u0022:7,\u0022loadEventEnd\u0022:7,\u0022domContentLoaded\u0022:6.799999952316284,\u0022resources\u0022:1,\u0022images\u0022:0}",
+  "bodyText": "PX5 set\n\nset",
+  "actionResults": [],
+  "screenshot": "C:\\Temp\\px5-inprivate\\01_127_0_0_1_set_set_034857.png",
+  "dom": "C:\\Temp\\px5-inprivate\\01_127_0_0_1_set_set_034857.html",
+  "timestamp": "2026-10-23T03:48:57.8948316\u002B09:00"
+}

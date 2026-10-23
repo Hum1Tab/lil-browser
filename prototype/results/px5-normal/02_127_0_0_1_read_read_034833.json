@@ -1,0 +1,21 @@
+{
+  "name": "read",
+  "requested": "http://127.0.0.1:8767/read",
+  "finalUrl": "http://127.0.0.1:8767/read",
+  "title": "PX5 read",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "adblockMode": "none",
+  "navMs": 9,
+  "requests": 0,
+  "blocked": 0,
+  "performance": "{\u0022duration\u0022:5.199999988079071,\u0022loadEventEnd\u0022:5.199999988079071,\u0022domContentLoaded\u0022:5.100000023841858,\u0022resources\u0022:1,\u0022images\u0022:0}",
+  "bodyText": "PX5 read\ncookie=px5cookie=1\nlocal=1\nsession=1\nidb=px5idb",
+  "actionResults": [],
+  "screenshot": "C:\\Temp\\px5-normal\\02_127_0_0_1_read_read_034833.png",
+  "dom": "C:\\Temp\\px5-normal\\02_127_0_0_1_read_read_034833.html",
+  "timestamp": "2026-10-23T03:48:33.9691525\u002B09:00"
+}

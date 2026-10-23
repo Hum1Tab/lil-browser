@@ -1,0 +1,19 @@
+{
+  "name": "webauthn-register",
+  "requested": "https://webauthn.io/",
+  "finalUrl": "https://webauthn.io/",
+  "title": "WebAuthn.io",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "chrome": "object",
+  "chromeWebview": "yes",
+  "uvpaa": "{\u0022uvpaa\u0022:true}",
+  "navError": "Unknown",
+  "bodyText": "WebAuthn.io\nA demo of the WebAuthn specification\nRegister\nAuthenticate\nAdvanced Settings\nWhat is WebAuthn?\n\nWelcome to webauthn.io! This site is designed by Duo Labs to test WebAuthn and passkeys. WebAuthn enjoys wide support in all evergreen browsers including Chrome, Safari, and Firefox, and in all modern operating systems including Android, iOS, macOS, and Windows.\n\nFor an introduction to WebAuthn and what it can do, check out webauthn.guide. If you\u0027re looking to add WebAuthn support to your site then passkeys.dev has you covered. The code for this demo can be found on GitHub.\n\nUsing WebAuthn\n\nAdd WebAuthn to your site with one of these libraries:\n\nPython\n\n duo-labs/py_webauthn\n\n Duo Labs\n\n Library\n\nTypeScript\n\n SimpleWebAuthn\n\n Matthew Miller\n\n Library\n\nTypeScript\n\n passwordless-id/webauthn\n\n Arnaud Dagnelies\n\n Library\n\nRuby\n\n cedarcode/webauthn-ruby\n\n Cedarcode\n\n Library\n\nRuby\n\n ruby-passkeys/devise-passkeys\n\n Ruby passkeys\n\n Library\n\nRuby\n\n ruby-passkeys/warden-webauthn\n\n Ruby passkeys\n\n Library\n\nJava\n\n webauthn4j/webauthn4j\n\n Yoshikazu Nojima\n\n Library\n\nJava\n\n java-webauthn-server\n\n Yubico\n\n Library\n\nJava\n\n vertx-auth/webauthn\n\n Eclipse Vert.x\n\n Library\n\n.NET\n\n abergs/fido2-net-lib\n\n Anders \u00C5berg\n\n Library\n\nGo\n\n go-webauthn/webauthn\n\n go-webauthn\n\n Library\n\nSwift\n\n swift-server/webauthn-swift\n\n Swift Server Working Group\n\n Library\n\nPreviewing WebAuthn\n\nSee WebAuthn in action with one of these demos:\n\nPython\n\n duo-labs/webauthn.io\n\n Duo Labs\n\n Demo\n\nTypeScript\n\n google/webauthndemo\n\n Google\n\n Demo\n\nJavascript\n\n webauthn-demo\n\n FIDO Alliance\n\n Demo\n\nJava\n\n vertx/webauthn-howto\n\n Eclipse Vert.x\n\n Demo\n\n.NET\n\n passwordless-lib/fido2-net-lib/Demo\n\n Anders \u00C5berg\n\n Demo\n\nSwift\n\n brokenhandsio/Vapor-PasskeyDemo\n\n Broken Hands\n\n Demo\n\nMatthew Miller\n\nMatthew Miller is a Tech Lead on the Cisco Secure team helping to build a user-centric Duo Passwordless experience.\n\nIn addition to representing Cisco in two WebAuthn Working Groups, and being a co-chair of the WebAuthn Adoption Community Group, Matthew created and maintains two WebAuthn libraries including py_webauthn and SimpleWebAuthn.\n\nGot a question about the site? Get in touch over at GitHub:\nduo-labs/webauthn.io\n\nSpecial Thanks to Nick Steele\n\nNick Steele is a cybersecurity researcher, and contributor to the WebAuthn specification. While he\u0027s no longer at Duo, he thinks about them every time he gets a push notification.\n\nSponsored by\n\n ",
+  "actionResults": [
+    "filled",
+    "clicked"
+  ],
+  "screenshot": "C:\\Temp\\px1-flow\\03_webauthn_io__webauthn_register_030610.png",
+  "dom": "C:\\Temp\\px1-flow\\03_webauthn_io__webauthn_register_030610.html",
+  "timestamp": "2026-10-23T03:06:10.9762032\u002B09:00"
+}

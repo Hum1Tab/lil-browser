@@ -1,0 +1,114 @@
+{
+  "tool": "verify_sources.py",
+  "version": "3.0.1",
+  "generated_at": "2026-10-23T15:57:10.606017+00:00",
+  "inputs": {
+    "sources": "D:/my project/ブラウザ/docs/architecture/evidence/sources.csv",
+    "article": "D:/my project/ブラウザ/docs/architecture/evidence/article.md",
+    "online": false
+  },
+  "summary": {
+    "verdict": "PASS_WITH_NOTES",
+    "sources": 55,
+    "critical": 0,
+    "major": 0,
+    "minor": 9,
+    "info": 0,
+    "online_checked": 0,
+    "checks_run": [
+      "parse",
+      "rows",
+      "article-usage"
+    ],
+    "limitations": [
+      "書誌の実在・内容の正しさを保証しない。",
+      "オンライン確認は到達性のみで、版・撤回・訂正の最終確認ではない。",
+      "DOI の解決先が正しい文献かを判定しない。",
+      "CSV の意味的な正しさ（主張との対応）は判定しない。"
+    ]
+  },
+  "online_results": [],
+  "findings": [
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S47",
+      "message": "出典 S47 の URL 'prototype/reports/px1-identity.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V001"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S48",
+      "message": "出典 S48 の URL 'prototype/reports/px4-drm.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V002"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S49",
+      "message": "出典 S49 の URL 'prototype/reports/px2-adblock.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V003"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S50",
+      "message": "出典 S50 の URL 'prototype/reports/px3-memory.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V004"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S51",
+      "message": "出典 S51 の URL 'prototype/reports/px3b-startup.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V005"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S52",
+      "message": "出典 S52 の URL 'prototype/reports/px3c-startup.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V006"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S53",
+      "message": "出典 S53 の URL 'prototype/reports/px5-privacy.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V007"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S54",
+      "message": "出典 S54 の URL 'prototype/reports/px6-ui.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V008"
+    },
+    {
+      "check": "url-format",
+      "severity": "minor",
+      "source_id": "S55",
+      "message": "出典 S55 の URL 'prototype/reports/px7-cef.md' が http(s) の絶対URLではない。",
+      "detail": "",
+      "repair": "",
+      "id": "V009"
+    }
+  ]
+}

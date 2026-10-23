@@ -1,0 +1,40 @@
+{
+  "history": {
+    "history_urls": 0,
+    "history_visits": 0,
+    "cookie_rows": 0
+  },
+  "restart_body": "PX5 read\ncookie=\nlocal=\nsession=\nidb=",
+  "artifacts": {
+    "History": {
+      "files": 1,
+      "bytes": 249856
+    },
+    "Network\\Cookies": {
+      "files": 1,
+      "bytes": 20480
+    },
+    "Local Storage": {
+      "files": 6,
+      "bytes": 642
+    },
+    "IndexedDB": "MISSING",
+    "Session Storage": "MISSING",
+    "Cache": {
+      "files": 0,
+      "bytes": 0
+    },
+    "Code Cache": {
+      "files": 4,
+      "bytes": 144
+    },
+    "GPUCache": "MISSING",
+    "Service Worker": "MISSING",
+    "WebStorage": "MISSING",
+    "Crashpad": {
+      "files": 3,
+      "bytes": 308
+    }
+  },
+  "udf_file_count": 153
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "oauthplayground",
+    "url": "https://developers.google.com/oauthplayground/",
+    "waitMs": 5000,
+    "actions": [
+      "(() => JSON.stringify({url:location.href,title:document.title,buttons:[...document.querySelectorAll('button')].map(b=>({text:(b.innerText||'').trim().slice(0,80),id:b.id,cls:(b.className||'').toString().slice(0,80)})).slice(0,40),inputs:[...document.querySelectorAll('input')].map(i=>({type:i.type,id:i.id,name:i.name,placeholder:i.placeholder})).slice(0,30),links:[...document.querySelectorAll('a')].filter(a=>/authorize|login|sign/i.test(a.innerText||'')).map(a=>({text:(a.innerText||'').trim().slice(0,60),href:a.href})).slice(0,20)}))()"
+    ],
+    "postWaitMs": 500
+  },
+  {
+    "name": "google-signin",
+    "url": "https://accounts.google.com/ServiceLogin",
+    "waitMs": 5000,
+    "actions": [
+      "(() => JSON.stringify({url:location.href,title:document.title,buttons:[...document.querySelectorAll('button')].map(b=>({text:(b.innerText||'').trim().slice(0,80),id:b.id,cls:(b.className||'').toString().slice(0,80)})).slice(0,40),inputs:[...document.querySelectorAll('input')].map(i=>({type:i.type,id:i.id,name:i.name,placeholder:i.placeholder})).slice(0,30)}))()"
+    ],
+    "postWaitMs": 500
+  },
+  {
+    "name": "webauthn",
+    "url": "https://webauthn.io/",
+    "waitMs": 5000,
+    "actions": [
+      "(() => JSON.stringify({url:location.href,title:document.title,buttons:[...document.querySelectorAll('button')].map(b=>({text:(b.innerText||'').trim().slice(0,80),id:b.id,cls:(b.className||'').toString().slice(0,80)})).slice(0,40),inputs:[...document.querySelectorAll('input')].map(i=>({type:i.type,id:i.id,name:i.name,placeholder:i.placeholder})).slice(0,30)}))()"
+    ],
+    "postWaitMs": 500
+  },
+  {
+    "name": "github-login",
+    "url": "https://github.com/login",
+    "waitMs": 5000,
+    "actions": [
+      "(() => JSON.stringify({url:location.href,title:document.title,buttons:[...document.querySelectorAll('button')].map(b=>({text:(b.innerText||'').trim().slice(0,80),id:b.id,cls:(b.className||'').toString().slice(0,80)})).slice(0,40),inputs:[...document.querySelectorAll('input')].map(i=>({type:i.type,id:i.id,name:i.name,placeholder:i.placeholder})).slice(0,30)}))()"
+    ],
+    "postWaitMs": 500
+  }
+]

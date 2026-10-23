@@ -1,0 +1,88 @@
+﻿{
+    "mode":  "edge",
+    "tabs":  1,
+    "runs":  [
+                 {
+                     "run":  "4a2ae8f470824511915f5e57ca29dd4c",
+                     "tabs":  1,
+                     "mode":  "edge",
+                     "startupMs":  5807.9,
+                     "beacon":  {
+                                    "time":  1792694528.7969193,
+                                    "run":  "4a2ae8f470824511915f5e57ca29dd4c",
+                                    "tab":  "1",
+                                    "perf":  "5453.400000035763",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  null,
+                     "loadMs":  null,
+                     "launch":  1792694522989
+                 },
+                 {
+                     "run":  "a3f709e54e804c6fa6a04fa539ec2c24",
+                     "tabs":  1,
+                     "mode":  "edge",
+                     "startupMs":  293.1,
+                     "beacon":  {
+                                    "time":  1792694530.781099,
+                                    "run":  "a3f709e54e804c6fa6a04fa539ec2c24",
+                                    "tab":  "1",
+                                    "perf":  "79.69999998807907",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  null,
+                     "loadMs":  null,
+                     "launch":  1792694530488
+                 },
+                 {
+                     "run":  "6f53d432776542df8b521cf4c06d2630",
+                     "tabs":  1,
+                     "mode":  "edge",
+                     "startupMs":  289.6,
+                     "beacon":  {
+                                    "time":  1792694532.613641,
+                                    "run":  "6f53d432776542df8b521cf4c06d2630",
+                                    "tab":  "1",
+                                    "perf":  "79",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  null,
+                     "loadMs":  null,
+                     "launch":  1792694532324
+                 },
+                 {
+                     "run":  "f6748240ae184401b4869acd6461654c",
+                     "tabs":  1,
+                     "mode":  "edge",
+                     "startupMs":  283.7,
+                     "beacon":  {
+                                    "time":  1792694534.4087007,
+                                    "run":  "f6748240ae184401b4869acd6461654c",
+                                    "tab":  "1",
+                                    "perf":  "77.80000001192093",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  null,
+                     "loadMs":  null,
+                     "launch":  1792694534125
+                 },
+                 {
+                     "run":  "b5b722bc71e945e3b52e43aa921a098e",
+                     "tabs":  1,
+                     "mode":  "edge",
+                     "startupMs":  321.1,
+                     "beacon":  {
+                                    "time":  1792694536.2611501,
+                                    "run":  "b5b722bc71e945e3b52e43aa921a098e",
+                                    "tab":  "1",
+                                    "perf":  "97.10000002384186",
+                                    "ua":  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+                                },
+                     "readyMs":  null,
+                     "loadMs":  null,
+                     "launch":  1792694535940
+                 }
+             ],
+    "medianMs":  293.1,
+    "warmMedianMs":  293.1
+}

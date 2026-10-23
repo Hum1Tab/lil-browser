@@ -1,0 +1,3 @@
+[
+  {"name":"read-after-restart","url":"http://127.0.0.1:8767/read","waitMs":1500,"actions":[],"postWaitMs":1000}
+]

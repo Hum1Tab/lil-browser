@@ -1,0 +1,13 @@
+[
+  {
+    "name": "oauth-setup",
+    "url": "https://developers.google.com/oauthplayground/",
+    "waitMs": 5000,
+    "actions": [
+      "(() => { const s=document.querySelector('#scopes'); if(!s) return 'no-scopes'; const set=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set; set.call(s,'https://www.googleapis.com/auth/userinfo.email'); ['input','change','keyup','blur'].forEach(t=>s.dispatchEvent(new Event(t,{bubbles:true}))); return s.value; })()",
+      "new Promise(r => setTimeout(() => r('waited'), 2500))",
+      "(() => JSON.stringify({btn:document.querySelector('#authorizeApisButton')?.className, cb:document.querySelector('#useDefaultOauthCred')?.checked, matches:[...document.querySelectorAll('input[type=checkbox]')].map((c,i)=>({i,id:c.id,label:(c.closest('label')?.innerText||'').replace(/\\s+/g,' ').trim().slice(0,100)})).filter(x=>/userinfo|email|profile|people|openid/i.test(x.label)).slice(0,20)}))()"
+    ],
+    "postWaitMs": 500
+  }
+]

@@ -1,0 +1,26 @@
+﻿{
+    "mode":  "ours",
+    "tabs":  5,
+    "url":  "http://127.0.0.1:8766/",
+    "startupMs":  7015.5,
+    "loadMs":  [
+                   4460,
+                   48,
+                   51,
+                   50,
+                   53
+               ],
+    "switchMs":  [
+                     2,
+                     0,
+                     0,
+                     0,
+                     0
+                 ],
+    "privateMB":  289.9,
+    "workingSetMB":  651.9,
+    "processCount":  12,
+    "hostPid":  18180,
+    "udf":  "D:\\my project\\ブラウザ\\prototype\\results\\px3-ours-5\\udf",
+    "measuredAt":  "2026-10-23T03:29:55.1099327+09:00"
+}

@@ -1,0 +1,25 @@
+<html lang="ja"><head><meta charset="utf-8"><title>PX5 set</title></head>
+<body><h1>PX5 set</h1><p id="out">set</p>
+<script>
+document.cookie = 'px5cookie=1; max-age=3600; path=/';
+localStorage.setItem('px5local', '1');
+sessionStorage.setItem('px5session', '1');
+try {
+  const req = indexedDB.open('px5db', 1);
+  req.onupgradeneeded = (e) => {
+    const db = e.target.result;
+    if (!db.objectStoreNames.contains('s')) db.createObjectStore('s');
+  };
+  req.onsuccess = (e) => {
+    const db = e.target.result;
+    const tx = db.transaction('s', 'readwrite');
+    tx.objectStore('s').put('px5idb', 'k');
+  };
+} catch (e) { console.log('idb ' + e); }
+try {
+  caches.open('px5cache').then((c) => c.put('/cache-me', new Response('px5cache')));
+} catch (e) { console.log('cache ' + e); }
+document.getElementById('out').textContent = 'set';
+</script>
+
+</body></html>

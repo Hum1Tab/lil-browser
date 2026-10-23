@@ -1,0 +1,55 @@
+{
+  "history": {
+    "history_urls": 2,
+    "history_visits": 3,
+    "cookie_rows": 1
+  },
+  "restart_body": "PX5 read\ncookie=px5cookie=1\nlocal=1\nsession=\nidb=px5idb",
+  "artifacts": {
+    "History": {
+      "files": 1,
+      "bytes": 249856
+    },
+    "Network\\Cookies": {
+      "files": 1,
+      "bytes": 20480
+    },
+    "Local Storage": {
+      "files": 6,
+      "bytes": 833
+    },
+    "IndexedDB": {
+      "files": 6,
+      "bytes": 1961
+    },
+    "Session Storage": {
+      "files": 5,
+      "bytes": 345
+    },
+    "Cache": {
+      "files": 7,
+      "bytes": 856456
+    },
+    "Code Cache": {
+      "files": 4,
+      "bytes": 144
+    },
+    "GPUCache": {
+      "files": 5,
+      "bytes": 557424
+    },
+    "Service Worker": {
+      "files": 4,
+      "bytes": 492
+    },
+    "WebStorage": {
+      "files": 2,
+      "bytes": 40960
+    },
+    "Crashpad": {
+      "files": 3,
+      "bytes": 308
+    }
+  },
+  "udf_file_count": 198
+}

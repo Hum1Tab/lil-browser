@@ -1,0 +1,8 @@
+{
+  "containsFullScreenElement": true,
+  "hostFullscreen": true,
+  "chromeVisible": false,
+  "bounds": "1920x1080",
+  "edgeHitTest": 1,
+  "contentPadding": 0
+}

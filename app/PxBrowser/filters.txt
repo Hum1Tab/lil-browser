@@ -1,0 +1,20 @@
+! PX Browser minimal filter list
+! This is not a uBO replacement. Hosts only.
+||doubleclick.net^
+||googlesyndication.com^
+||googleadservices.com^
+||adservice.google.com^
+||amazon-adsystem.com^
+||scorecardresearch.com^
+||adnxs.com^
+||taboola.com^
+||outbrain.com^
+||criteo.com^
+||pubmatic.com^
+||rubiconproject.com^
+||openx.net^
+||quantserve.com^
+||moatads.com^
+||adsrvr.org^
+||casalemedia.com^
+||bidswitch.net^

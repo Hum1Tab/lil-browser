@@ -1,0 +1,198 @@
+EBWebView\Crashpad\metadata	0
+EBWebView\Crashpad\settings.dat	288
+EBWebView\Crashpad\throttle_store.dat	20
+EBWebView\Default\AutofillAiModelCache\LOCK	0
+EBWebView\Default\AutofillAiModelCache\LOG	0
+EBWebView\Default\AutofillAiModelCache\LOG.old	0
+EBWebView\Default\AutofillStrikeDatabase\LOCK	0
+EBWebView\Default\AutofillStrikeDatabase\LOG	0
+EBWebView\Default\AutofillStrikeDatabase\LOG.old	0
+EBWebView\Default\BookmarkMergedSurfaceOrdering	6
+EBWebView\Default\BudgetDatabase\LOCK	0
+EBWebView\Default\BudgetDatabase\LOG	0
+EBWebView\Default\BudgetDatabase\LOG.old	0
+EBWebView\Default\Cache\Cache_Data\data_0	45056
+EBWebView\Default\Cache\Cache_Data\data_1	270336
+EBWebView\Default\Cache\Cache_Data\data_2	8192
+EBWebView\Default\Cache\Cache_Data\data_3	8192
+EBWebView\Default\Cache\Cache_Data\index	524656
+EBWebView\Default\Cache\No_Vary_Search\journal.baj	4
+EBWebView\Default\Cache\No_Vary_Search\snapshot.baf	20
+EBWebView\Default\ClientCertificates\LOCK	0
+EBWebView\Default\ClientCertificates\LOG	0
+EBWebView\Default\ClientCertificates\LOG.old	0
+EBWebView\Default\Code Cache\js\index	24
+EBWebView\Default\Code Cache\js\index-dir\the-real-index	48
+EBWebView\Default\Code Cache\wasm\index	24
+EBWebView\Default\Code Cache\wasm\index-dir\the-real-index	48
+EBWebView\Default\DIPS	36864
+EBWebView\Default\DawnGraphiteCache\data_0	8192
+EBWebView\Default\DawnGraphiteCache\data_1	270336
+EBWebView\Default\DawnGraphiteCache\data_2	8192
+EBWebView\Default\DawnGraphiteCache\data_3	8192
+EBWebView\Default\DawnGraphiteCache\index	262512
+EBWebView\Default\DawnWebGPUCache\data_0	8192
+EBWebView\Default\DawnWebGPUCache\data_1	270336
+EBWebView\Default\DawnWebGPUCache\data_2	8192
+EBWebView\Default\DawnWebGPUCache\data_3	8192
+EBWebView\Default\DawnWebGPUCache\index	262512
+EBWebView\Default\EdgeSessions\SessionRestoreLog	666
+EBWebView\Default\Extension Rules\000003.log	38
+EBWebView\Default\Extension Rules\CURRENT	16
+EBWebView\Default\Extension Rules\LOCK	0
+EBWebView\Default\Extension Rules\LOG	239
+EBWebView\Default\Extension Rules\MANIFEST-000001	41
+EBWebView\Default\Extension Scripts\000003.log	38
+EBWebView\Default\Extension Scripts\CURRENT	16
+EBWebView\Default\Extension Scripts\LOCK	0
+EBWebView\Default\Extension Scripts\LOG	243
+EBWebView\Default\Extension Scripts\MANIFEST-000001	41
+EBWebView\Default\Extension State\000003.log	114
+EBWebView\Default\Extension State\CURRENT	16
+EBWebView\Default\Extension State\LOCK	0
+EBWebView\Default\Extension State\LOG	280
+EBWebView\Default\Extension State\LOG.old	239
+EBWebView\Default\Extension State\MANIFEST-000001	41
+EBWebView\Default\ExtensionActivityEdge	32768
+EBWebView\Default\ExtensionActivityEdge-journal	0
+EBWebView\Default\Favicons	20480
+EBWebView\Default\Favicons-journal	0
+EBWebView\Default\Feature Engagement Tracker\AvailabilityDB\LOCK	0
+EBWebView\Default\Feature Engagement Tracker\AvailabilityDB\LOG	0
+EBWebView\Default\Feature Engagement Tracker\AvailabilityDB\LOG.old	0
+EBWebView\Default\Feature Engagement Tracker\EventDB\LOCK	0
+EBWebView\Default\Feature Engagement Tracker\EventDB\LOG	0
+EBWebView\Default\Feature Engagement Tracker\EventDB\LOG.old	0
+EBWebView\Default\GPUCache\data_0	8192
+EBWebView\Default\GPUCache\data_1	270336
+EBWebView\Default\GPUCache\data_2	8192
+EBWebView\Default\GPUCache\data_3	8192
+EBWebView\Default\GPUCache\index	262512
+EBWebView\Default\History	249856
+EBWebView\Default\History-journal	0
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\000003.log	1275
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\CURRENT	16
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\LOCK	0
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\LOG	344
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\LOG.old	303
+EBWebView\Default\IndexedDB\http_127.0.0.1_8767.indexeddb.leveldb\MANIFEST-000001	23
+EBWebView\Default\LOCK	0
+EBWebView\Default\LOG	0
+EBWebView\Default\LOG.old	0
+EBWebView\Default\Local Storage\leveldb\000003.log	233
+EBWebView\Default\Local Storage\leveldb\CURRENT	16
+EBWebView\Default\Local Storage\leveldb\LOCK	0
+EBWebView\Default\Local Storage\leveldb\LOG	292
+EBWebView\Default\Local Storage\leveldb\LOG.old	251
+EBWebView\Default\Local Storage\leveldb\MANIFEST-000001	41
+EBWebView\Default\Login Data	43008
+EBWebView\Default\Login Data For Account	43008
+EBWebView\Default\Login Data For Account-journal	0
+EBWebView\Default\Login Data-journal	0
+EBWebView\Default\Network Action Predictor	53248
+EBWebView\Default\Network Action Predictor-journal	0
+EBWebView\Default\Network\Cookies	20480
+EBWebView\Default\Network\Cookies-journal	0
+EBWebView\Default\Network\Device Bound Sessions	20480
+EBWebView\Default\Network\Device Bound Sessions-journal	0
+EBWebView\Default\Network\Network Persistent State	111
+EBWebView\Default\Network\NetworkDataMigrated	0
+EBWebView\Default\Network\Reporting and NEL	36864
+EBWebView\Default\Network\Reporting and NEL-journal	0
+EBWebView\Default\Network\SCT Auditing Pending Reports	2
+EBWebView\Default\Network\Sdch Dictionaries	40
+EBWebView\Default\Network\Trust Tokens	36864
+EBWebView\Default\Network\Trust Tokens-journal	0
+EBWebView\Default\PersistentOriginTrials\LOCK	0
+EBWebView\Default\PersistentOriginTrials\LOG	0
+EBWebView\Default\PersistentOriginTrials\LOG.old	0
+EBWebView\Default\Preferences	8338
+EBWebView\Default\README	182
+EBWebView\Default\Secure Preferences	9856
+EBWebView\Default\ServerCertificate	20480
+EBWebView\Default\ServerCertificate-journal	0
+EBWebView\Default\Service Worker\CacheStorage\e50d6e0e26a2c6568f3709fb232560fcd7639135\5481b4fd-bd89-484b-8aff-b4640fba1354\153f8129fbb4e0ab_0	269
+EBWebView\Default\Service Worker\CacheStorage\e50d6e0e26a2c6568f3709fb232560fcd7639135\5481b4fd-bd89-484b-8aff-b4640fba1354\index	24
+EBWebView\Default\Service Worker\CacheStorage\e50d6e0e26a2c6568f3709fb232560fcd7639135\5481b4fd-bd89-484b-8aff-b4640fba1354\index-dir\the-real-index	72
+EBWebView\Default\Service Worker\CacheStorage\e50d6e0e26a2c6568f3709fb232560fcd7639135\index.txt	127
+EBWebView\Default\Session Storage\000003.log	49
+EBWebView\Default\Session Storage\CURRENT	16
+EBWebView\Default\Session Storage\LOCK	0
+EBWebView\Default\Session Storage\LOG	239
+EBWebView\Default\Session Storage\MANIFEST-000001	41
+EBWebView\Default\Shared Dictionary\cache\index	24
+EBWebView\Default\Shared Dictionary\cache\index-dir\the-real-index	48
+EBWebView\Default\Shared Dictionary\db	45056
+EBWebView\Default\Shared Dictionary\db-journal	0
+EBWebView\Default\Site Characteristics Database\000003.log	184
+EBWebView\Default\Site Characteristics Database\CURRENT	16
+EBWebView\Default\Site Characteristics Database\LOCK	0
+EBWebView\Default\Site Characteristics Database\LOG	308
+EBWebView\Default\Site Characteristics Database\LOG.old	267
+EBWebView\Default\Site Characteristics Database\MANIFEST-000001	41
+EBWebView\Default\Sync Data\LevelDB\000003.log	65
+EBWebView\Default\Sync Data\LevelDB\CURRENT	16
+EBWebView\Default\Sync Data\LevelDB\LOCK	0
+EBWebView\Default\Sync Data\LevelDB\LOG	284
+EBWebView\Default\Sync Data\LevelDB\LOG.old	243
+EBWebView\Default\Sync Data\LevelDB\MANIFEST-000001	41
+EBWebView\Default\Top Sites	20480
+EBWebView\Default\Top Sites-journal	0
+EBWebView\Default\Vpn Tokens	28672
+EBWebView\Default\Vpn Tokens-journal	0
+EBWebView\Default\Web Data	223232
+EBWebView\Default\Web Data-journal	0
+EBWebView\Default\WebStorage\QuotaManager	40960
+EBWebView\Default\WebStorage\QuotaManager-journal	0
+EBWebView\Default\commerce_subscription_db\LOCK	0
+EBWebView\Default\commerce_subscription_db\LOG	0
+EBWebView\Default\commerce_subscription_db\LOG.old	0
+EBWebView\Default\declarative_performance_observer.db	32768
+EBWebView\Default\declarative_performance_observer.db-journal	0
+EBWebView\Default\discount_infos_db\LOCK	0
+EBWebView\Default\discount_infos_db\LOG	0
+EBWebView\Default\discount_infos_db\LOG.old	0
+EBWebView\Default\discounts_db\LOCK	0
+EBWebView\Default\discounts_db\LOG	0
+EBWebView\Default\discounts_db\LOG.old	0
+EBWebView\Default\favorites_diagnostic.log	1781
+EBWebView\Default\optimization_guide_hint_cache_store\LOCK	0
+EBWebView\Default\optimization_guide_hint_cache_store\LOG	0
+EBWebView\Default\optimization_guide_hint_cache_store\LOG.old	0
+EBWebView\Default\parcel_tracking_db\LOCK	0
+EBWebView\Default\parcel_tracking_db\LOG	0
+EBWebView\Default\parcel_tracking_db\LOG.old	0
+EBWebView\Default\settings_diagnostic.log	24906
+EBWebView\Default\shared_proto_db\000003.log	5696
+EBWebView\Default\shared_proto_db\CURRENT	16
+EBWebView\Default\shared_proto_db\LOCK	0
+EBWebView\Default\shared_proto_db\LOG	280
+EBWebView\Default\shared_proto_db\LOG.old	239
+EBWebView\Default\shared_proto_db\MANIFEST-000001	41
+EBWebView\Default\shared_proto_db\metadata\000003.log	852
+EBWebView\Default\shared_proto_db\metadata\CURRENT	16
+EBWebView\Default\shared_proto_db\metadata\LOCK	0
+EBWebView\Default\shared_proto_db\metadata\LOG	298
+EBWebView\Default\shared_proto_db\metadata\LOG.old	257
+EBWebView\Default\shared_proto_db\metadata\MANIFEST-000001	41
+EBWebView\GPUPersistentCache\DawnGraphiteCache\NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS\cache.db	0
+EBWebView\GPUPersistentCache\DawnGraphiteCache\NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS\cache.db-wal	0
+EBWebView\GPUPersistentCache\DawnGraphiteCache\NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS\cache.journal	0
+EBWebView\GrShaderCache\data_0	45056
+EBWebView\GrShaderCache\data_1	270336
+EBWebView\GrShaderCache\data_2	8192
+EBWebView\GrShaderCache\data_3	4202496
+EBWebView\GrShaderCache\index	262512
+EBWebView\Last Version	13
+EBWebView\Local State	8872
+EBWebView\ShaderCache\data_0	8192
+EBWebView\ShaderCache\data_1	270336
+EBWebView\ShaderCache\data_2	8192
+EBWebView\ShaderCache\data_3	8192
+EBWebView\ShaderCache\index	262512
+EBWebView\SmartScreen\RemoteData\edgeSettings	18
+EBWebView\SmartScreen\RemoteData\edgeSettings_2.0-0	3552
+EBWebView\Variations	85
+EBWebView\VariationsRuntimeSeedV2	332
+EBWebView\VariationsSafeSeedV2	1273
+EBWebView\VariationsSeedV2	76
