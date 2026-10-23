@@ -65,7 +65,7 @@
 6. 最大の技術的障害はカバレッジである。WebResourceRequested はフレーム URL を公開せず、WebSocket では発火せず、`$csp` を変更できない。third-party 判定と `$domain`、`$websocket`、`$csp` は実装できないか近似になる。Brave/uBO と同じ遮断率は出ない。往復コストは PX2 では小さかった。
 7. 最大のセキュリティリスクは、ホストが設計上「通信を横取りしスクリプトを注入する存在」であること。フィルタ更新とスクリプトレットのサプライチェーンを破られると、全ページの資格情報が危険にさらされる。ここは署名・固定・レビューで守る。
 8. **13 の反証レビューと PX1〜PX6 で、設計の前提は更新された。** 拡張が必須なら WebView2 は失格。Google ログイン、パスキー、Widevine は PX の完全確認が必要である。遮断コストは PX2 で小さく、制約はカバレッジに移った。PX3 では 1/5/20 タブのメモリが Edge を下回ったが、**PX3c で暖機後起動が Edge より遅く、「軽量 + 高速」は Gate 1 不合格**である。PX5 では InPrivate のサイトデータは残らないが、プロファイルファイルは残る。PX6 の UI プロトタイプは 404 行・14 コントロールで、生産 UI は 4〜6 か月と推定された。最終報告は [16](16-final-report.md)。
-9. 要求の網羅性は [15-requirements-traceability.md](15-requirements-traceability.md) で確認できる。設計と PX1〜PX6 は完了、PX7 は未実施、本格実装、法務、監査は未実施である。需要検証キット（[17](17-redefinition-and-demand-validation.md)、[prototype/px8-demand](../../prototype/px8-demand/)）と、**実装済み MVP（[18](18-mvp-implementation.md)、[app/PxBrowser](../../app/PxBrowser/)）** がある。需要データは未取得である。
+9. 要求の網羅性は [15-requirements-traceability.md](15-requirements-traceability.md) で確認できる。設計と PX1〜PX6 は完了、PX7 は未実施、本格実装、法務、監査は未実施である。需要検証キット（[17](17-redefinition-and-demand-validation.md)、[prototype/px8-demand](../../prototype/px8-demand/)）と、**実装済み MVP（[18](18-mvp-implementation.md)、[app/lilBrowser](../../app/lilBrowser/)）** がある。需要データは未取得である。
 
 ## 4. 表記
 
@@ -93,8 +93,8 @@ PX1 では Google OAuth の識別子画面と Windows Security のプロンプ�
 
 ## 6. 実装済み MVP
 
-- コード: [`app/PxBrowser/`](../../app/PxBrowser/)
-- 配布物: [`dist/PxBrowser/`](../../dist/PxBrowser/)、[`dist/PxBrowser-win-x64.zip`](../../dist/PxBrowser-win-x64.zip)
+- コード: [`app/lilBrowser/`](../../app/lilBrowser/)
+- 配布物: [`dist/lIlBrowser/`](../../dist/lIlBrowser/)、[`dist/lIlBrowser-win-x64.zip`](../../dist/lIlBrowser-win-x64.zip)
 - 実装レポート: [18-mvp-implementation.md](18-mvp-implementation.md)
 - デザイン: ダーク [`ui-dark.png`](../../prototype/results/px10-design/ui-dark.png)、ホワイト [`ui-light.png`](../../prototype/results/px10-design/ui-light.png)
 

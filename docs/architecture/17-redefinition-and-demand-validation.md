@@ -79,7 +79,7 @@ H3 の「適格訪問者」は、自分で集めた対象者（知人、コミ�
 
 ### 3.4 プロトタイプテスト（5〜10 人）
 
-- [lIl Browser MVP](18-mvp-implementation.md)（[app/PxBrowser](../../app/PxBrowser/)）を使う。タブ、アドレスバー、履歴、設定、権限、ダウンロードの基本操作。PX6 は UI の参照実装として残す。
+- [lIl Browser MVP](18-mvp-implementation.md)（[app/lilBrowser](../../app/lilBrowser/)）を使う。タブ、アドレスバー、履歴、設定、権限、ダウンロードの基本操作。PX6 は UI の参照実装として残す。
 - タスク:
   1. 5 つのサイトを開き、タブを切り替える。
   2. 履歴から前のページに戻る。

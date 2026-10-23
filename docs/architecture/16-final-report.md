@@ -1,4 +1,4 @@
-﻿# 16. 最終報告 — 「軽量 + 高速」ブラウザとしての No-Go
+# 16. 最終報告 — 「軽量 + 高速」ブラウザとしての No-Go
 
 状態: 設計・検証フェーズの最終報告
 日付: 2026-10-23
@@ -179,8 +179,8 @@ flowchart TD
 
 ユーザーの「実際に完成まで」を受けて、再定義した製品の MVP を実装した。
 
-- コード: [app/PxBrowser](../../app/PxBrowser/)
-- 配布物: [dist/PxBrowser](../../dist/PxBrowser/)、[dist/PxBrowser-win-x64.zip](../../dist/PxBrowser-win-x64.zip)
+- コード: [app/lilBrowser](../../app/lilBrowser/)
+- 配布物: [dist/lIlBrowser](../../dist/lIlBrowser/)、[dist/lIlBrowser-win-x64.zip](../../dist/lIlBrowser-win-x64.zip)
 - 実装レポート: [18-mvp-implementation.md](18-mvp-implementation.md)
 
 実装した機能: タブ、アドレスバー、履歴、設定、簡易遮断、プライベート、権限、ダウンロード、セッション復元。

@@ -44,13 +44,13 @@ Chrome/Edge の完全代替ではありません。
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-`%LOCALAPPDATA%\Programs\PxBrowser` にコピーし、スタートメニューのショートカットと
+`%LOCALAPPDATA%\Programs\lIlBrowser` にコピーし、スタートメニューのショートカットと
 HKCU のアンインストール項目を作ります。既定ブラウザには登録しません。
 
 アンインストール:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\Programs\PxBrowser\uninstall.ps1"
+powershell -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\Programs\lIlBrowser\uninstall.ps1"
 ```
 
 ユーザーデータも消す場合: `-RemoveData`。
@@ -71,14 +71,14 @@ powershell -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\Programs\PxBrowser\u
 ## ビルド
 
 ```powershell
-dotnet build app/PxBrowser/PxBrowser.csproj -c Release
+dotnet build app/lilBrowser/lilBrowser.csproj -c Release
 ```
 
 ## スモークテスト
 
 ```powershell
-python app/PxBrowser/tests/server.py 8769
-dotnet app/PxBrowser/bin/Release/net8.0-windows/win-x64/lIlBrowser.dll `
+python app/lilBrowser/tests/server.py 8769
+dotnet app/lilBrowser/bin/Release/net8.0-windows/win-x64/lIlBrowser.dll `
   --data-dir C:\Temp\pxb-data --smoke `
   --smoke-url http://127.0.0.1:8769/ --out C:\Temp\pxb-smoke
 ```

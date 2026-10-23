@@ -2,13 +2,13 @@
 
 状態: **実装済み・スモークテスト済み**
 日付: 2026-10-23
-場所: [`app/PxBrowser/`](../../app/PxBrowser/)
-配布物: [`dist/PxBrowser/`](../../dist/PxBrowser/)、[`dist/PxBrowser-win-x64.zip`](../../dist/PxBrowser-win-x64.zip)
+場所: [`app/lilBrowser/`](../../app/lilBrowser/)
+配布物: [`dist/lIlBrowser/`](../../dist/lIlBrowser/)、[`dist/lIlBrowser-win-x64.zip`](../../dist/lIlBrowser-win-x64.zip)
 
 ## 1. 何を作ったか
 
 「軽量 + 高速」ではなく、**メモリ軽量・プライバシー・制御**に絞った Windows ブラウザ MVP。
-.NET 8 WinForms + WebView2 で実装し、自己完結型の `PxBrowser.exe` として配布できる。
+.NET 8 WinForms + WebView2 で実装し、自己完結型の `lIlBrowser.exe` として配布できる。
 
 **これは Chrome/Edge の完全代替ではない。** 拡張、Google の完全ログイン、Netflix の DRM、速い起動は対象外。
 
@@ -46,13 +46,13 @@
 ## 3. 構成
 
 ```text
-app/PxBrowser/
+app/lilBrowser/
   Program.cs          起動、引数、例外処理
   MainForm.cs         UI、タブ、履歴、設定、遮断、プライベート、スモーク
   Settings.cs         設定の JSON 永続化
   HistoryStore.cs     履歴の JSON 永続化、90 日 / 5000 件
   Adblock.cs          ホストリスト + filters.txt
-  AppPaths.cs         %LOCALAPPDATA%\PxBrowser のパス
+  AppPaths.cs         %LOCALAPPDATA%\lIl Browser のパス
   filters.txt         簡易フィルタ
   tests/server.py     スモーク用ローカルサーバー
   README.md           利用・ビルド・制限
@@ -60,11 +60,11 @@ app/PxBrowser/
 
 データ:
 
-- `%LOCALAPPDATA%\PxBrowser\settings.json`
-- `%LOCALAPPDATA%\PxBrowser\history.json`
-- `%LOCALAPPDATA%\PxBrowser\session.json`
-- `%LOCALAPPDATA%\PxBrowser\WebView2\`（通常）
-- `%LOCALAPPDATA%\PxBrowser\WebView2Private\`（InPrivate）
+- `%LOCALAPPDATA%\lIl Browser\settings.json`
+- `%LOCALAPPDATA%\lIl Browser\history.json`
+- `%LOCALAPPDATA%\lIl Browser\session.json`
+- `%LOCALAPPDATA%\lIl Browser\WebView2\`（通常）
+- `%LOCALAPPDATA%\lIl Browser\WebView2Private\`（InPrivate）
 
 `--data-dir` でテスト用に分離できる。
 
@@ -164,7 +164,7 @@ local="
 
 ### 4.5 通常起動
 
-`PxBrowser.exe --data-dir ...` でウィンドウが開き、`session.json` と `history.json` が生成されることを確認。
+`lIlBrowser.exe --data-dir ...` でウィンドウが開き、`session.json` と `history.json` が生成されることを確認。
 終了時にセッションが保存される。
 
 ### 4.6 追加機能
@@ -181,17 +181,17 @@ local="
 ### 4.7 インストーラ
 
 `install.ps1 -InstallDir C:\Temp\pxb-install -NoShortcut -NoRegistry` で一時ディレクトリに導入し、
-導入先の `PxBrowser.exe` でスモークテストが通ることを確認した。
-`uninstall.ps1` で `PxBrowser.exe` が削除されることも確認した。
+導入先の `lIlBrowser.exe` でスモークテストが通ることを確認した。
+`uninstall.ps1` で `lIlBrowser.exe` が削除されることも確認した。
 
 `clean.exit` マーカーを消して再起動すると、`session.json` から 1 タブが復元された（クラッシュ復元）。
 
 ## 5. 配布物
 
-- `dist/PxBrowser/PxBrowser.exe`（単一 exe、自己完結、.NET ランタイム同梱）
+- `dist/lIlBrowser/lIlBrowser.exe`（単一 exe、自己完結、.NET ランタイム同梱）
 - 約 **162.9MB**。
 - `filters.txt` 同梱。
-- `dist/PxBrowser-win-x64.zip`（約 **66.0MB**）。
+- `dist/lIlBrowser-win-x64.zip`（約 **66.0MB**）。
 - `install.ps1` / `uninstall.ps1` 同梱。
 
 インストール:
@@ -200,7 +200,7 @@ local="
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-`%LOCALAPPDATA%\Programs\PxBrowser` にコピーし、スタートメニューのショートカットと
+`%LOCALAPPDATA%\Programs\lIlBrowser` にコピーし、スタートメニューのショートカットと
 HKCU のアンインストール項目を作る。既定ブラウザには登録しない。
 
 WebView2 Runtime は Windows 11 に通常同梱。無い場合は Microsoft の Evergreen Runtime が必要。
@@ -208,7 +208,7 @@ WebView2 Runtime は Windows 11 に通常同梱。無い場合は Microsoft の 
 起動:
 
 ```text
-dist\PxBrowser\PxBrowser.exe
+dist\lIlBrowser\lIlBrowser.exe
 ```
 
 ## 6. 設計との差分

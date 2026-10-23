@@ -15,7 +15,7 @@ Requirements:
 - Microsoft Edge WebView2 Runtime
 
 ```powershell
-dotnet publish app/PxBrowser/PxBrowser.csproj `
+dotnet publish app/lilBrowser/lilBrowser.csproj `
   -c Release -r win-x64 --self-contained true `
   -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true `
   -p:DebugType=None -o dist/lIlBrowser
@@ -34,18 +34,18 @@ Data is stored in `%LOCALAPPDATA%\lIl Browser\`. Settings from the previous `PxB
 ## Install
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\app\PxBrowser\install.ps1
+powershell -ExecutionPolicy Bypass -File .\app\lilBrowser\install.ps1
 ```
 
 The installer copies the app to `%LOCALAPPDATA%\Programs\lIlBrowser`, creates a Start Menu shortcut, and registers an HKCU uninstall entry. It does not register the app as the default browser.
 
 ## Update check
 
-`app/PxBrowser/UpdateChecker.cs` reads the latest commit of `Hum1Tab/lil-browser` from the GitHub API. If the commit is newer than the local executable, the app shows the update button in the top-right toolbar. The button opens the commit page; it does not install automatically.
+`app/lilBrowser/UpdateChecker.cs` reads the latest commit of `Hum1Tab/lil-browser` from the GitHub API. If the commit is newer than the local executable, the app shows the update button in the top-right toolbar. The button opens the commit page; it does not install automatically.
 
 ## Signing
 
-There is no public code-signing certificate. The local build uses a self-signed test certificate via `app/PxBrowser/sign-local.ps1`. Other PCs need their own trusted certificate, or the executable will be blocked by application-control policy.
+There is no public code-signing certificate. The local build uses a self-signed test certificate via `app/lilBrowser/sign-local.ps1`. Other PCs need their own trusted certificate, or the executable will be blocked by application-control policy.
 
 ## Limitations
 
