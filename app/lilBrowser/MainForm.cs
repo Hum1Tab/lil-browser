@@ -102,6 +102,7 @@ internal sealed class MainForm : Form
     private Adblock _adblock = new(true);
     private CoreWebView2Environment? _env;
     private string _udf = "";
+    private string _privateProfile = "";
     private bool _allowClose;
 
     public MainForm(bool privateMode, bool smoke, string smokeUrl, string outDir, bool restoreSmoke = false)
@@ -271,7 +272,7 @@ internal sealed class MainForm : Form
                 if (IsDisposed || info == null) return;
                 _updateInfo = info;
                 _updateButton.Visible = true;
-                _updateButton.ToolTipText = $"GitHub が更新されました（{info.Sha[..7]}）";
+                _updateButton.ToolTipText = $"GitHub が更新されました（v{info.Version}）";
                 LayoutToolbar();
                 _tabBar.Invalidate();
             }));
@@ -686,7 +687,8 @@ internal sealed class MainForm : Form
         _bookmarks = BookmarkStore.Load();
         _history = _private ? new List<HistoryEntry>() : HistoryStore.Load();
         _adblock = new Adblock(_settings.AdblockEnabled);
-        _udf = _private ? AppPaths.PrivateUdfPath : AppPaths.UdfPath;
+        _privateProfile = _private ? AppPaths.CreatePrivateProfilePath() : "";
+        _udf = _private ? _privateProfile : AppPaths.UdfPath;
 
         if (_smoke) _adblock.Enabled = true;
 
@@ -2208,7 +2210,7 @@ internal sealed class MainForm : Form
     private void ShowAbout()
     {
         PxMessageBox.Info(this, "lIl Browser について",
-            "lIl Browser 0.3.0\n\n"
+            "lIl Browser 0.4.0\n\n"
             + "メモリ軽量・プライバシー・制御に絞った Windows ブラウザ MVP。\n"
             + "Chrome 拡張、Google の完全ログイン、Netflix の DRM 再生は対象外です。\n"
             + "起動は Edge より遅いです。\n\n"
@@ -2242,7 +2244,7 @@ internal sealed class MainForm : Form
             }
             if (_private)
             {
-                try { Directory.Delete(AppPaths.PrivateUdfPath, true); } catch { }
+                try { AppPaths.DeletePrivateProfile(_privateProfile); } catch { }
             }
             Close();
         }

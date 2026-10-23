@@ -1,4 +1,4 @@
-# lIl Browser 0.3.0
+# lIl Browser 0.4.0
 
 メモリ軽量・プライバシー・制御に絞った、Windows 向けの小さなブラウザ MVP です。
 Chrome/Edge の完全代替ではありません。

@@ -43,7 +43,7 @@ The installer copies the app to `%LOCALAPPDATA%\Programs\lIlBrowser`, creates a 
 
 ## Update check
 
-`app/lilBrowser/UpdateChecker.cs` reads the latest commit of `Hum1Tab/lil-browser` from the GitHub API. If the latest SHA differs from the Git SHA embedded at build time, the app shows the update button in the top-right toolbar. The button opens the commit page; it does not install automatically.
+`app/lilBrowser/UpdateChecker.cs` fetches `update.json` and `update.json.sig` from `Hum1Tab/lil-browser`. It verifies the RSA-2048/SHA-256 signature with an embedded public key, checks the manifest version and SHA-256, and then shows the update button. The button opens the signed release page; it does not install automatically.
 
 ## Signing
 

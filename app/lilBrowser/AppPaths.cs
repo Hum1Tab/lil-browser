@@ -1,9 +1,15 @@
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace PxBrowser;
 
 internal static class AppPaths
 {
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool MoveFileEx(string existingFileName, string? newFileName, int flags);
+
+    private const int MoveFileDelayUntilReboot = 4;
+
     private static readonly string DefaultRoot = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "lIl Browser");
 
@@ -43,7 +49,53 @@ internal static class AppPaths
 
         Directory.CreateDirectory(Root);
         Directory.CreateDirectory(UdfPath);
-        Directory.CreateDirectory(PrivateUdfPath);
+        CleanupStalePrivateProfiles();
+    }
+
+    public static string CreatePrivateProfilePath()
+    {
+        return Path.Combine(Path.GetTempPath(), $"lIlBrowser-private-{Guid.NewGuid():N}");
+    }
+
+    public static void DeletePrivateProfile(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path)) return;
+
+        for (var attempt = 0; attempt < 20; attempt++)
+        {
+            try
+            {
+                Directory.Delete(path, true);
+                return;
+            }
+            catch
+            {
+                Thread.Sleep(250);
+            }
+        }
+
+        // If a WebView2 process still holds files, ask Windows to remove the
+        // directory tree at the next reboot rather than silently keeping it.
+        try { MoveFileEx(path, null, MoveFileDelayUntilReboot); } catch { }
+    }
+
+    private static void CleanupStalePrivateProfiles()
+    {
+        try
+        {
+            foreach (var path in Directory.GetDirectories(Path.GetTempPath(), "lIlBrowser-private-*"))
+            {
+                try
+                {
+                    if (Directory.GetLastWriteTimeUtc(path) < DateTime.UtcNow.AddMinutes(-10))
+                    {
+                        DeletePrivateProfile(path);
+                    }
+                }
+                catch { }
+            }
+        }
+        catch { }
     }
 
     public static void Log(string message)

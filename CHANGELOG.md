@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0
+
+### Security release
+
+- Signed update manifest (RSA-2048/SHA-256) with an embedded public key.
+- Update checks now verify the manifest signature before showing the update button.
+- Private windows use a unique temporary WebView2 profile; cleanup is retried and scheduled for reboot if locked.
+- Renderer process failure is surfaced in the status bar.
+- Extended downloadable executable/script warnings.
+
 ## 0.3.0
 
 ### Brand

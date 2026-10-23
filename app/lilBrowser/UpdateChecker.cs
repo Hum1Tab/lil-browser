@@ -1,11 +1,12 @@
-using System.Diagnostics;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 
 namespace PxBrowser;
 
-internal sealed record UpdateInfo(string Sha, DateTimeOffset CommittedAt, string Url);
+internal sealed record UpdateInfo(string Version, string Sha256, string Url);
 
 internal static class UpdateChecker
 {
@@ -14,75 +15,76 @@ internal static class UpdateChecker
 
     public static string RepositoryUrl => $"https://github.com/{Owner}/{Repository}";
     public static string ReleasesUrl => $"{RepositoryUrl}/releases";
-    public static string ApiUrl => $"https://api.github.com/repos/{Owner}/{Repository}/commits?per_page=1";
+    public static string ManifestUrl =>
+        $"https://raw.githubusercontent.com/{Owner}/{Repository}/main/update.json";
+    public static string SignatureUrl => ManifestUrl + ".sig";
+
+    // Public half of the release signing key. The private half is kept outside the repo.
+    private const string PublicModulus =
+        "4jRclI2T6y6pqf3M1pccJN2BSSArytt4ofcDHfQeDlUVKmtCBW2+sMYG7yBH6VeaaomWpkNQNCKxgjKbFdiSZBDmv88ZlMZmRZXtRu5xqiiZ3VouH2frrDDA8iTk65ztvtqrNeUtFSp47NYqdvaQRvGWpV0NxB+Ru9MRULc8zFQJbbuupGzZ5AvZENNtOt4o4CdKr6OTNNVMR0mjhRbtrPKaIjyExiECciAq+sEmcoRcx8PvrBwQqMV+DlTi8vJB4VOm7lW2Q2Qsi2q3PTkmEP6hRYfN+mBWEXLhbPj8zPn/rv2T4+xUY0Pz1uUP2ludZh5W6fhQFZCyU4pVmZl/6Q==";
+    private const string PublicExponent = "AQAB";
 
     public static async Task<UpdateInfo?> CheckAsync(CancellationToken cancellationToken = default)
     {
         using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(8) };
-        http.DefaultRequestHeaders.UserAgent.ParseAdd("lIlBrowser/0.3");
-        http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
+        http.DefaultRequestHeaders.UserAgent.ParseAdd("lIlBrowser/0.4");
 
-        using var response = await http.GetAsync(ApiUrl, cancellationToken);
-        response.EnsureSuccessStatusCode();
-        await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-        using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken);
+        var manifestBytes = await http.GetByteArrayAsync(ManifestUrl, cancellationToken);
+        var signatureText = await http.GetStringAsync(SignatureUrl, cancellationToken);
+        if (!Verify(manifestBytes, signatureText.Trim())) return null;
 
-        if (document.RootElement.ValueKind != JsonValueKind.Array ||
-            document.RootElement.GetArrayLength() == 0)
+        using var document = JsonDocument.Parse(manifestBytes);
+        var root = document.RootElement;
+        var versionText = root.GetProperty("version").GetString();
+        var url = root.GetProperty("url").GetString();
+        var sha256 = root.GetProperty("sha256").GetString();
+        if (!Version.TryParse(versionText, out var version) ||
+            version <= CurrentVersion() ||
+            !IsTrustedReleaseUrl(url) ||
+            !IsSha256(sha256))
         {
             return null;
         }
 
-        var latest = document.RootElement[0];
-        var sha = latest.GetProperty("sha").GetString();
-        var dateText = latest.GetProperty("commit").GetProperty("committer").GetProperty("date").GetString();
-        var url = latest.GetProperty("html_url").GetString();
-        if (string.IsNullOrWhiteSpace(sha) || !DateTimeOffset.TryParse(dateText, out var committed) ||
-            string.IsNullOrWhiteSpace(url))
-        {
-            return null;
-        }
-
-        var embedded = EmbeddedCommit();
-        if (embedded != null)
-        {
-            return sha.StartsWith(embedded, StringComparison.OrdinalIgnoreCase)
-                ? null
-                : new UpdateInfo(sha, committed, url);
-        }
-
-        // Fallback for local builds that do not have Git metadata.
-        return committed > BuildTimeUtc().AddMinutes(1)
-            ? new UpdateInfo(sha, committed, url)
-            : null;
+        return new UpdateInfo(version.ToString(3), sha256!.ToLowerInvariant(), url!);
     }
 
-    private static string? EmbeddedCommit()
+    private static bool Verify(byte[] manifest, string signatureText)
     {
-        var informational = Assembly.GetExecutingAssembly()
-            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-        if (string.IsNullOrWhiteSpace(informational)) return null;
-
-        var index = informational.IndexOf('+');
-        if (index < 0 || index + 1 >= informational.Length) return null;
-
-        var commit = informational[(index + 1)..].Trim();
-        return commit.Length >= 7 && !commit.Equals("unknown", StringComparison.OrdinalIgnoreCase)
-            ? commit
-            : null;
+        try
+        {
+            var signature = Convert.FromBase64String(signatureText);
+            var parameters = new RSAParameters
+            {
+                Modulus = Convert.FromBase64String(PublicModulus),
+                Exponent = Convert.FromBase64String(PublicExponent),
+            };
+            using var rsa = RSA.Create();
+            rsa.ImportParameters(parameters);
+            return rsa.VerifyData(manifest, signature, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    private static DateTime BuildTimeUtc()
+    private static Version CurrentVersion()
     {
-        var path = Environment.ProcessPath;
-        if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
-        {
-            return File.GetLastWriteTimeUtc(path);
-        }
+        return Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0);
+    }
 
-        var assembly = Assembly.GetExecutingAssembly().Location;
-        return !string.IsNullOrWhiteSpace(assembly) && File.Exists(assembly)
-            ? File.GetLastWriteTimeUtc(assembly)
-            : Process.GetCurrentProcess().StartTime.ToUniversalTime();
+    private static bool IsTrustedReleaseUrl(string? url)
+    {
+        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri)) return false;
+        if (!uri.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase)) return false;
+        if (!uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase)) return false;
+        return uri.AbsolutePath.StartsWith($"/{Owner}/{Repository}/releases/", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsSha256(string? value)
+    {
+        return value is { Length: 64 } &&
+               value.All(c => Uri.IsHexDigit(c));
     }
 }

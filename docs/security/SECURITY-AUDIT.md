@@ -111,7 +111,7 @@ Added a persistent 32px safety bar while the page is fullscreen:
 
 Source path: `UpdateChecker`, `lilBrowser.csproj`.
 
-The build now embeds the Git commit SHA into `AssemblyInformationalVersion`. The update check compares the installed SHA with GitHub's latest SHA instead of relying only on file timestamps. The file timestamp remains a fallback for local builds without Git.
+The release now publishes a signed `update.json` (RSA-2048/SHA-256) and `update.json.sig`. The app verifies the signature with an embedded public key, checks the manifest version and SHA-256, and only then shows the update button. The update is not downloaded or installed automatically.
 
 ### SEC-009 — HTTP indication (fixed)
 
@@ -135,7 +135,7 @@ Camera, microphone, geolocation, notifications, clipboard read/write, file read/
 
 Source path: `MainForm_FormClosing`.
 
-On private-window close, the app attempts to delete its dedicated `WebView2Private` profile directory after disposing the WebView2 controls. Windows may retain locked files; this is not a guarantee of forensic erasure.
+Private windows use a unique `%TEMP%\\lIlBrowser-private-<guid>` profile. On close the app disposes the WebView2 controls, retries deletion, and asks Windows to delete a locked tree on reboot. This is still best-effort, not a forensic-erasure guarantee.
 ## Residual risks / needs validation
 
 1. **Local executable signing**: the build uses a local self-signed certificate. Other
