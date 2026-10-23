@@ -2772,7 +2772,7 @@ internal sealed class RoundedAddressHost : ToolStripControlHost
         _securityBadge.Visible = enabled;
         if (enabled)
         {
-            _securityBadge.Text = _secure ? "\uE72E" : "\uE785";
+            _securityBadge.Text = _secure ? "\uE72E" : "\uE7BA";
             _securityBadge.ForeColor = _secure ? Theme.Gold : Color.FromArgb(217, 119, 6);
             _toolTip.SetToolTip(_securityBadge, _secure
                 ? "HTTPS: 暗号化された接続"
