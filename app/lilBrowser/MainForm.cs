@@ -838,6 +838,13 @@ internal sealed class MainForm : Form
         core.WebResourceRequested += OnWebResourceRequested;
         core.PermissionRequested += OnPermissionRequested;
         core.DownloadStarting += OnDownloadStarting;
+        core.ProcessFailed += (_, e) =>
+        {
+            _status.Text = e.ProcessFailedKind == CoreWebView2ProcessFailedKind.RenderProcessUnresponsive
+                ? "ページが応答していません"
+                : "ページプロセスが終了しました";
+            _statusTimer.Stop();
+        };
         core.ContainsFullScreenElementChanged += (_, _) =>
         {
             if (core.ContainsFullScreenElement) EnterHtmlFullscreen();
@@ -1027,6 +1034,7 @@ internal sealed class MainForm : Form
     {
         ".exe", ".msi", ".msp", ".bat", ".cmd", ".ps1", ".vbs", ".vbe", ".js", ".jse",
         ".wsf", ".wsh", ".hta", ".scr", ".com", ".pif", ".reg", ".lnk", ".jar", ".py", ".sh", ".dll",
+        ".cpl", ".msc", ".gadget", ".application", ".appref-ms", ".diagcab", ".scf",
     };
 
     private bool ConfirmOpenDownload(string path)

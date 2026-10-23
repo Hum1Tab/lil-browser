@@ -53,6 +53,7 @@ There is no public code-signing certificate. The local build uses a self-signed 
 
 - [Security review](docs/security/SECURITY-AUDIT.md)
 - [9-item verification checklist](docs/security/CHECKLIST.md)
+- [Changelog](CHANGELOG.md)
 
 ## Limitations
 

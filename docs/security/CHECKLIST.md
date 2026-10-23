@@ -25,7 +25,7 @@ Reference baseline:
 | 6 | TLS / certificate / HTTP | **Implemented / partial** | WebView2 certificate validation is not bypassed. HTTPS shows a gold lock; HTTP shows an amber warning glyph and border. There is no custom certificate-error override. HSTS/preload behavior comes from the engine. |
 | 7 | Update mechanism / dependencies | **Partial** | Build embeds the Git SHA in `AssemblyInformationalVersion`; update check compares it with the latest GitHub commit. Update execution is not automatic and metadata is not signed. A public-key signed update channel remains future work. WebView2 NuGet version is pinned. |
 | 8 | Permissions / clipboard | **Implemented / partial** | Permission keys include scheme/host/port. Camera, microphone, geolocation, notifications, clipboard, file read/write, local fonts, MIDI, and sensors are session-only even if “remember” is checked. No per-permission expiry UI yet. |
-| 9 | Resource exhaustion / crash resilience | **Partial** | Global tab cap 24, popup rate limit 4/10 s, download list cap 100, history cap 5000. No per-tab memory quota, renderer crash recovery test, or fuzz budget. WebView2 runs renderers in its own process model. |
+| 9 | Resource exhaustion / crash resilience | **Partial** | Global tab cap 24, popup rate limit 4/10 s, download list cap 100, history cap 5000. Renderer/process failure is surfaced in the status bar. No per-tab memory quota or fuzz budget. |
 
 ## What was actually executed
 
