@@ -757,6 +757,12 @@ internal sealed class MainForm : Form
 
     private async Task CreateTabAsync(string url, bool focusAddress = false)
     {
+        if (_tabs.TabCount >= MaxTabs)
+        {
+            _status.Text = "タブ数の上限に達しました";
+            return;
+        }
+
         var page = new BrowserTab { Text = "New Tab", Padding = new Padding(0), BackColor = Theme.Ink };
         var web = new WebView2
         {
@@ -881,6 +887,10 @@ internal sealed class MainForm : Form
             _stop.Enabled = true;
             _statusTimer.Stop();
             _status.Text = "読み込み中…";
+        };
+        core.FrameNavigationStarting += (_, e) =>
+        {
+            if (!UrlPolicy.IsAllowedNavigation(e.Uri)) e.Cancel = true;
         };
         core.NavigationCompleted += (_, e) =>
         {

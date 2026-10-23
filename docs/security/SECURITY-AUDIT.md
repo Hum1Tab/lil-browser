@@ -1,5 +1,7 @@
 # lIl Browser security review
 
+Verification checklist: [CHECKLIST.md](CHECKLIST.md)
+
 Scope: Windows WinForms + WebView2 browser source in `app/lilBrowser`.
 Method: source-first review following the Cloudflare `security-audit` skill guidance
 (trust boundaries, webview/native bridge, client-side navigation, desktop local-IPC,

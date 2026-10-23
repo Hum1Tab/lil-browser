@@ -49,6 +49,11 @@ The installer copies the app to `%LOCALAPPDATA%\Programs\lIlBrowser`, creates a 
 
 There is no public code-signing certificate. The local build uses a self-signed test certificate via `app/lilBrowser/sign-local.ps1`. Other PCs need their own trusted certificate, or the executable will be blocked by application-control policy.
 
+## Security notes
+
+- [Security review](docs/security/SECURITY-AUDIT.md)
+- [9-item verification checklist](docs/security/CHECKLIST.md)
+
 ## Limitations
 
 - No Chrome extensions
